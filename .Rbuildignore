@@ -1,0 +1,5 @@
+^renv$
+^renv\.lock$
+^phacking\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
