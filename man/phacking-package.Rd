@@ -6,8 +6,9 @@
 \alias{phacking}
 \title{The 'phacking' package.}
 \description{
-A DESCRIPTION OF THE PACKAGE
+Methods for meta-analysis corrected for phacking.
 }
 \references{
-Stan Development Team (2022). RStan: the R interface to Stan. R package version 2.21.5. https://mc-stan.org
+Stan Development Team (2022). RStan: the R interface to Stan. R
+package version 2.21.5. https://mc-stan.org
 }

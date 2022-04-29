@@ -1,0 +1,69 @@
+#' Compute theoretical and empirical CDF for a right-truncated meta-analysis
+#'
+#' @param rtma Output of \code{phacking_rtma()}.
+#'
+#' @return A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
+#'   (their fitted CDF), \code{ecdfi} (their empirical CDF), and \code{affirm}
+#'   (whether effect is affirmative).
+#' @export
+#'
+#' @examples
+#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' rtma_cdf(lodder_rtma)
+rtma_cdf <- function(rtma) {
+  mu <- rtma$stats %>% filter(.data$param == "mu") %>% pull(.data$median)
+  tau <- rtma$stats %>% filter(.data$param == "tau") %>% pull(.data$median)
+  ptrunc <- truncnorm::ptruncnorm
+
+  tibble(yi = rtma$values$yi,
+         sei = rtma$values$sei,
+         affirm = rtma$values$affirm) %>%
+    mutate(ecdfi = ecdf(.data$yi)(.data$yi),
+           a = if_else(.data$affirm, rtma$values$tcrit * .data$sei, -Inf),
+           b = if_else(.data$affirm, Inf, rtma$values$tcrit * .data$sei),
+           cdfi = ptrunc(q = .data$yi, a = .data$a, b = .data$b, mean = mu,
+                         sd = sqrt(tau ^ 2 + .data$sei ^ 2))) %>%
+    select(.data$yi, .data$cdfi, .data$ecdfi, .data$affirm)
+}
+
+#' QQ plot for a right-truncated meta-analysis
+#'
+#' @param rtma Output of \code{phacking_rtma()}.
+#'
+#' @export
+#'
+#' @examples
+#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' rtma_qqplot(lodder_rtma)
+rtma_qqplot <- function(rtma) {
+  cdf <- rtma_cdf(rtma)
+  ggplot(cdf, aes(x = .data$cdfi, y = .data$ecdfi, colour = .data$affirm)) +
+    coord_equal() +
+    geom_abline() +
+    geom_point(size = 2, alpha = 0.5) +
+    labs(x = "Fitted CDF of point estimates",
+         y = "Empirical CDF of point estimates") +
+    theme_minimal()
+}
+
+#' Z-score density plot
+#'
+#' @param zi Vector of within-study z-scores.
+#' @param alpha_select Alpha level.
+#' @param crit_color Color for line and text are critical z-score.
+#'
+#' @export
+#'
+#' @examples
+#' z_density(lodder$zi)
+z_density <- function(zi, alpha_select = 0.05, crit_color = "red") {
+  tcrit <- qnorm(1 - alpha_select / 2)
+  qplot(zi, geom = "density", adjust = 0.3) +
+    geom_vline(xintercept = 0, color = "gray") +
+    geom_vline(xintercept = tcrit, linetype = "dashed", color = crit_color) +
+    annotate(geom = "text", label = sprintf("Z = %.2f", tcrit), x = tcrit - 0.2,
+             y = 0, hjust = 0, color = crit_color, angle = 90) +
+    scale_x_continuous(breaks = seq(-20, 20, 1), name = "Z-score") +
+    scale_y_continuous(breaks = NULL, name = "") +
+    theme_minimal()
+}

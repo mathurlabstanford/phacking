@@ -16,9 +16,11 @@ Depends:
 Imports:
     assertthat,
     dplyr,
+    ggplot2,
     methods,
     rlang,
     stats,
+    truncnorm,
     Rcpp (>= 0.12.0),
     RcppParallel (>= 5.0.1),
     rstan (>= 2.18.1),
@@ -31,3 +33,4 @@ LinkingTo:
     rstan (>= 2.18.1),
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
+LazyData: true
