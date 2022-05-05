@@ -12,7 +12,7 @@
 #'   \code{control} argument.
 #' @param parallelize Logical indicating whether to parallelize sampling.
 #'
-#' @return A list with three elements, \code{params}, \code{stats} and
+#' @return A list with three elements, \code{values}, \code{stats} and
 #'   \code{fit}.
 #' @export
 #'

@@ -2,7 +2,6 @@ functions{
 
 	real jeffreys_prior(real mu, real tau, int k, real[] sei, real[] tcrit, real[] affirm){
 
-	  // these will be overwritten for EACH observation
 		real mustarL;
 		real mustarU;
 		real alphaL;
@@ -17,6 +16,11 @@ functions{
 		// will just be set to 1
 		int n;
 
+    real Si;
+    real cz;
+    real dnor;
+    real pnor;
+    real r;
 
 		// this will be the TOTALS for all observations
 		matrix[2,2] fishinfototal;
@@ -26,65 +30,28 @@ functions{
   	fishinfototal[2,2] = 0;
 
 
-		// MM: build a Fisher info matrix for EACH observation
+		// build a Fisher info matrix for EACH observation
 		for (i in 1:k) {
 
-		  // MARGINAL SD for this one observation
-		  sigma = sqrt(tau^2 + sei[i]^2);
+		  Si = sqrt( tau^2 + sei[i]^2 );
+      cz = (sei[i] * tcrit[i] - mu) / Si;
+      dnor = exp( normal_lpdf(cz | 0, 1 ) );
+      pnor = exp( normal_lcdf(cz | 0, 1 ) );
+      r = dnor/pnor;
 
-		  // depending on whether study is affirmative, set truncation limits
-		  // for THIS study, given its SE
-		  if ( affirm[i] == 0 ) {
-		  		UU = tcrit[i] * sei[i];
-		  		// standardized truncation limits
-		  		mustarL = -999;
-  		    mustarU = (UU - mu) / sigma;
-		  } else if ( affirm[i] == 1 ) {
-		      LL = tcrit[i] * sei[i];
-		      // standardized truncation limits
-		  		mustarL = (LL - mu) / sigma;
-  		    mustarU = 999;
-		  }
-
-  		// because EACH fisher info below has n=1 only
-  		n = 1;
-
-  		// beginning of stuff that is not modified at all from TNE,
-  		//  *except* for the change-of-variables terms in kms and kss applied in a
-  		//   final code block
-  		// note that normal_lpdf, etc., parameterize in terms of SD, not var
-  		//  the (0,1) below are *not* start values for MCMC
-  		alphaL = exp( normal_lpdf(mustarL | 0, 1) -
-  	                log_diff_exp( normal_lcdf(mustarU | 0, 1),
-  	                normal_lcdf(mustarL | 0, 1) ) );
-
-  		alphaU = exp( normal_lpdf(mustarU | 0, 1) -
-   	                log_diff_exp( normal_lcdf(mustarU | 0, 1),
-   	                normal_lcdf(mustarL | 0, 1) ) );
-
-  		// second derivatives for Fisher info
-  		// wrt sigma, not tau
-  		kmm = -n/sigma^2 + n/sigma^2 * ((alphaU-alphaL)^2 + alphaU*mustarU- alphaL*mustarL);
-  		kms = -2*n/sigma^2 * (alphaL - alphaU) +
-  	   		  n/sigma^2 * (alphaL - alphaU + (alphaU*mustarU^2 - alphaL*mustarL^2) +
-  			  				(alphaL-alphaU) * (alphaL*mustarL - alphaU*mustarU));
-  		kss = n/sigma^2 - 3*n/sigma^2 * (1 + mustarL*alphaL - mustarU*alphaU) +
-  	   			n/sigma^2 * (mustarU*alphaU*(mustarU^2 - 2) - mustarL*alphaL*(mustarL^2 - 2) +
-  								(alphaU*mustarU - alphaL*mustarL)^2);
-
-
-  		// change of variables to get derivs wrt tau
-  		kms = kms * tau / sqrt(tau^2 + sei[i]^2);
-  		kss = kss * tau^2 / (tau^2 + sei[i]^2);
+      kmm = Si^(-2)*(cz*r + r^2 - 1);
+      kms = tau*Si^(-3)*r*( cz^2 + cz*r + 1 );
+      kss = ( tau^2 * Si^(-4) ) * ( cz^3*r + cz^2*r^2 + cz*r - 2 );
 
   		fishinfo[1,1] = -kmm;
       fishinfo[1,2] = -kms;
       fishinfo[2,1] = -kms;
       fishinfo[2,2] = -kss;
 
-  		// MM: add the new fisher info to the total one
+  		// add the new fisher info to the total one
   		fishinfototal = fishinfototal + fishinfo;
 		}
+
 		return sqrt(determinant(fishinfototal));
 	}
 }
