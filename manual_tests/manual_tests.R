@@ -6,7 +6,8 @@ library(here)
 setwd(here())
 load_all()
 
-# change to map and feed it to optim
+# - I updated prior
+# only use nonaffirms in RTMA fitting
 
 # RUN PACKAGE EXAMPLE (LODDER) -------------------------------------
 
@@ -18,6 +19,7 @@ rtma_qqplot(res)
 rtma_cdf(res)
 
 z_density(yi = lodder$yi, vi = lodder$vi)
+
 
 
 # OTHER METAS -------------------------------------
