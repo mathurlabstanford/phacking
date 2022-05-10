@@ -1,7 +1,9 @@
 
 library(data.table)
 library(devtools)
+library(here)
 
+setwd(here())
 load_all()
 
 # change to map and feed it to optim
@@ -15,7 +17,7 @@ res = phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 rtma_qqplot(res)
 rtma_cdf(res)
 
-z_density(yi =)
+z_density(yi = lodder$yi, vi = lodder$vi)
 
 
 # OTHER METAS -------------------------------------
@@ -29,5 +31,6 @@ res2 = phacking_rtma(d$yi, d$vi, parallelize = FALSE)
 rtma_qqplot(res2)
 rtma_cdf(res2)
 
+# here, the geom_annotation overlaps with the smoothed density
 z_density(yi = d$yi, vi = d$vi)
 

@@ -61,6 +61,16 @@ phacking_rtma <- function(yi,
 
   param_median <- function(p) median(unlist(rstan::extract(stan_fit, p)))
 
+  browser()
+
+  ## MM sloppily extracts max-lp iterate
+  ext = rstan::extract(stan_fit) # a vector of all post-WU iterates across all chains
+  best.ind = which.max(ext$log_post)  # single iterate with best log-posterior should be very close to MAP
+  # posterior means, posterior medians, and max-LP iterate
+  muhat_maxlp = ext$mu[best.ind]
+  tauhat_maxlp = ext$tau[best.ind]
+  ## end MM
+
   stan_summary <- rstan::summary(stan_fit)$summary %>%
     as_tibble(rownames = "param")
 
