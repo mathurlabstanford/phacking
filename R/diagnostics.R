@@ -48,7 +48,10 @@ rtma_qqplot <- function(rtma) {
 
 #' Z-score density plot
 #'
-#' @param zi Vector of within-study z-scores.
+#' @param yi A vector of point estimates to be meta-analyzed.
+#' @param vi A vector of estimated variances for the point estimates.
+#' @param sei A vector of estimated standard errors for the point estimates
+#'   (only one of \code{vi} or \code{sei} needs to be specified).
 #' @param alpha_select Alpha level.
 #' @param crit_color Color for line and text are critical z-score.
 #'
@@ -56,7 +59,14 @@ rtma_qqplot <- function(rtma) {
 #'
 #' @examples
 #' z_density(lodder$zi)
-z_density <- function(zi, alpha_select = 0.05, crit_color = "red") {
+z_density <- function(yi, sei, vi, alpha_select = 0.05, crit_color = "red") {
+
+  if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
+  if (missing(vi)) vi <- sei ^ 2
+  if (missing(sei)) sei <- sqrt(vi)
+
+  zi = yi/sei
+
   tcrit <- qnorm(1 - alpha_select / 2)
   qplot(zi, geom = "density", adjust = 0.3) +
     geom_vline(xintercept = 0, color = "gray") +

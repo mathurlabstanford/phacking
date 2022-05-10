@@ -4,8 +4,18 @@ library(devtools)
 
 load_all()
 
+# change to map and feed it to optim
+
 # RUN PACKAGE EXAMPLE (LODDER) -------------------------------------
 
+data(lodder)
+
+res = phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+
+rtma_qqplot(res)
+rtma_cdf(res)
+
+z_density(yi =)
 
 
 # OTHER METAS -------------------------------------
@@ -14,15 +24,10 @@ setwd("~/Dropbox/Personal computer/Reference sheets/Library of prepped example m
 
 d = fread("flegal_prepped.csv")
 
-svalue(yi = d$yi,
-       vi = d$vi,
-       q = 0,
-       model = "robust",
-       favor.positive = FALSE,
-       return.worst.meta = TRUE)
+res2 = phacking_rtma(d$yi, d$vi, parallelize = FALSE)
 
-corrected_meta(yi = d$yi,
-               vi = d$vi,
-               eta = 15,
-               model = "robust",
-               favor.positive = FALSE)
+rtma_qqplot(res2)
+rtma_cdf(res2)
+
+z_density(yi = d$yi, vi = d$vi)
+
