@@ -12,5 +12,5 @@
 #' }
 #'
 #' @source
-#' Lodder, Ong, & Grasman (2019). A comprehensive meta-analysis of money priming. \emph{Journal of Experimental Psychology: General}, 148(4):688-712. Dataset available from \url{https://osf.io/8xjct/}.
+#' Lodder, Ong, & Grasman (2019). A comprehensive meta-analysis of money priming. \emph{Journal of Experimental Psychology: General}, 148(4):688-712. Dataset available from \url{https://osf.io/8xjct/} and reused with permission.
 "lodder"
