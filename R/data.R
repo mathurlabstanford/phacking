@@ -1,15 +1,16 @@
-#' Meta analysis of money priming studies
+#' Meta-analysis of money priming studies
 #'
-#' Longer description
+#' Dataset from a meta-analysis of experimental studies on the effect of money primes on a variety of psychological and behavioral outcomes, in which some studies were preregistered (Lodder et al., 2019).
 #'
 #' @format A data frame with 287 rows and 4 variables:
 #' \describe{
-#'   \item{study}{code identifying the study}
-#'   \item{yi}{effect size (what units?)}
-#'   \item{vi}{variance}
-#'   \item{zi}{z-score}
-#'   \item{preregistered}{logical indicating whether study was preregistered}
+#'   \item{study}{Code identifying the study}
+#'   \item{yi}{Point estimate on the Hedges' \emph{g} scale}
+#'   \item{vi}{Variance of point estimate}
+#'   \item{zi}{Z-score}
+#'   \item{preregistered}{Logical indicating whether study was preregistered}
 #' }
 #'
-#' @source \url{TODO}
+#' @source
+#' Lodder, Ong, & Grasman (2019). A comprehensive meta-analysis of money priming. \emph{Journal of Experimental Psychology: General}, 148(4):688-712. Dataset available from \url{https://osf.io/8xjct/}.
 "lodder"

@@ -2,7 +2,7 @@
 % Please edit documentation in R/diagnostics.R
 \name{rtma_qqplot}
 \alias{rtma_qqplot}
-\title{QQ plot for a right-truncated meta-analysis}
+\title{Diagnostic quantile-quantile plot for a right-truncated meta-analysis}
 \usage{
 rtma_qqplot(rtma)
 }
@@ -10,7 +10,7 @@ rtma_qqplot(rtma)
 \item{rtma}{Output of \code{phacking_rtma()}.}
 }
 \description{
-QQ plot for a right-truncated meta-analysis
+To assess the fit of right-truncated meta-analysis and possible violations of its distributional assumptions, plots the fitted cumulative distribution function (CDF) of the published nonaffirmative estimates versus their empirical CDF. If the points do not adhere fairly closely to a 45-degree line, the right-truncated meta-analysis may not fit adequately.
 }
 \examples{
 lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)

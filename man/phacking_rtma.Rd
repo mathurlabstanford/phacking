@@ -17,16 +17,14 @@ phacking_rtma(
 \arguments{
 \item{yi}{A vector of point estimates to be meta-analyzed.}
 
-\item{vi}{A vector of estimated variances for the point estimates.}
+\item{vi}{A vector of estimated variances (i.e., squared standard errors) for the point estimates.}
 
-\item{sei}{A vector of estimated standard errors for the point estimates
-(only one of \code{vi} or \code{sei} needs to be specified).}
+\item{sei}{A vector of estimated standard errors for the point estimates. (Only one of \code{vi} or \code{sei} needs to be specified).}
 
-\item{favor_positive}{\code{TRUE} if phacking is assumed to favor positive
-estimates; \code{FALSE} if assumed to favor negative estimates (defaults to
-\code{TRUE}).}
+\item{favor_positive}{\code{TRUE} if p-hacking and publication bias are assumed to favor significant positive
+estimates; \code{FALSE} if assumed to favor significant negative estimates.}
 
-\item{alpha_select}{Alpha level that phacking is assumed to operate over.}
+\item{alpha_select}{Alpha level at which an estimate's probability of being favored by p-hacking and/or by publication bias is assumed to change (i.e., the threshold at which study investigators, journal editors, etc., consider an estimate to be significant).}
 
 \item{stan_control}{List passed to \code{rstan::sampling()} as the
 \code{control} argument.}
@@ -34,12 +32,15 @@ estimates; \code{FALSE} if assumed to favor negative estimates (defaults to
 \item{parallelize}{Logical indicating whether to parallelize sampling.}
 }
 \value{
-A list with three elements, \code{params}, \code{stats} and
+A list with three elements, \code{values}, \code{stats} and
 \code{fit}.
 }
 \description{
-Right-truncated meta-analysis
+Fits right-truncated meta-analysis (RTMA), a bias correction for the joint effects of p-hacking (i.e., manipulation of results within studies to obtain significant, positive estimates) and traditional publication bias (i.e., the selective publication of studies with significant, positive results) in meta-analyses.
 }
 \examples{
 phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+}
+\references{
+Mathur (2022). Sensitivity analysis for p-hacking in meta-analyses. Preprint available at: (FILL IN)
 }

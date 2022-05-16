@@ -2,7 +2,7 @@
 % Please edit documentation in R/diagnostics.R
 \name{rtma_cdf}
 \alias{rtma_cdf}
-\title{Compute theoretical and empirical CDF for a right-truncated meta-analysis}
+\title{Compute theoretical and empirical CDFs for a right-truncated meta-analysis}
 \usage{
 rtma_cdf(rtma)
 }
@@ -15,9 +15,12 @@ A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
 (whether effect is affirmative).
 }
 \description{
-Compute theoretical and empirical CDF for a right-truncated meta-analysis
+Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 }
 \examples{
 lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 rtma_cdf(lodder_rtma)
+}
+\references{
+Mathur (2022). Sensitivity analysis for p-hacking in meta-analyses. Preprint available at: (FILL IN)
 }
