@@ -37,8 +37,7 @@ phacking_rtma <- function(yi,
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
   stan_data <- list(y = yi, sei = sei, k = k,
-                    tcrit = rep(tcrit, k),
-                    affirm = as.numeric(affirm))
+                    tcrit = rep(tcrit, k))
 
   values <- list(
     k = k,
