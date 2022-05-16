@@ -4,7 +4,12 @@ library(devtools)
 library(here)
 
 setwd(here())
+
+# note: this will not recompile the stan model
+# even if you restart R
+#  sourcing stanmodels.R also doesn't work, even though stanmodels is then correct
 load_all()
+
 
 
 # RUN PACKAGE EXAMPLE (LODDER) -------------------------------------
@@ -14,7 +19,8 @@ data(lodder)
 #@keep only nonaffirmatives; eventually package needs to do this internally
 lodder = lodder %>% filter( yi/sqrt(vi) < qnorm(.975) )
 
-res = phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+res = phacking_rtma(lodder$yi, lodder$vi, parallelize = TRUE)
+res$fit
 
 rtma_qqplot(res)
 rtma_cdf(res)
