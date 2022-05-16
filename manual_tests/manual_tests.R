@@ -6,12 +6,13 @@ library(here)
 setwd(here())
 load_all()
 
-# - I updated prior
-# only use nonaffirms in RTMA fitting
 
 # RUN PACKAGE EXAMPLE (LODDER) -------------------------------------
 
 data(lodder)
+
+#@keep only nonaffirmatives; eventually package needs to do this internally
+lodder = lodder %>% filter( yi/sqrt(vi) < qnorm(.975) )
 
 res = phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 

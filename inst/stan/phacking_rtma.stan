@@ -2,27 +2,18 @@ functions{
 
 	real jeffreys_prior(real mu, real tau, int k, real[] sei, real[] tcrit, real[] affirm){
 
-		real mustarL;
-		real mustarU;
-		real alphaL;
-		real alphaU;
+    // variables that will be recalculated for each observation
 		real kmm;
 		real kms;
 		real kss;
-		matrix[2,2] fishinfo;
-    real sigma;
-		real LL;
-		real UU;
-		// will just be set to 1
-		int n;
-
     real Si;
     real cz;
     real dnor;
     real pnor;
     real r;
+    matrix[2,2] fishinfo;
 
-		// this will be the TOTALS for all observations
+		// will become the total Fisher info across all observations
 		matrix[2,2] fishinfototal;
 		fishinfototal[1,1] = 0;
   	fishinfototal[1,2] = 0;
