@@ -33,18 +33,17 @@ static int current_statement_begin__;
 stan::io::program_reader prog_reader__() {
     stan::io::program_reader reader;
     reader.add_event(0, 0, "start", "model_phacking_rtma");
-    reader.add_event(160, 158, "end", "model_phacking_rtma");
+    reader.add_event(93, 91, "end", "model_phacking_rtma");
     return reader;
 }
-template <typename T0__, typename T1__, typename T3__, typename T4__, typename T5__>
-typename boost::math::tools::promote_args<T0__, T1__, T3__, T4__, typename boost::math::tools::promote_args<T5__>::type>::type
+template <typename T0__, typename T1__, typename T3__, typename T4__>
+typename boost::math::tools::promote_args<T0__, T1__, T3__, T4__>::type
 jeffreys_prior(const T0__& mu,
                    const T1__& tau,
                    const int& k,
                    const std::vector<T3__>& sei,
-                   const std::vector<T4__>& tcrit,
-                   const std::vector<T5__>& affirm, std::ostream* pstream__) {
-    typedef typename boost::math::tools::promote_args<T0__, T1__, T3__, T4__, typename boost::math::tools::promote_args<T5__>::type>::type local_scalar_t__;
+                   const std::vector<T4__>& tcrit, std::ostream* pstream__) {
+    typedef typename boost::math::tools::promote_args<T0__, T1__, T3__, T4__>::type local_scalar_t__;
     typedef local_scalar_t__ fun_return_scalar_t__;
     const static bool propto__ = true;
     (void) propto__;
@@ -54,151 +53,119 @@ jeffreys_prior(const T0__& mu,
     try {
         {
         current_statement_begin__ = 6;
-        local_scalar_t__ mustarL(DUMMY_VAR__);
-        (void) mustarL;  // dummy to suppress unused var warning
-        stan::math::initialize(mustarL, DUMMY_VAR__);
-        stan::math::fill(mustarL, DUMMY_VAR__);
-        current_statement_begin__ = 7;
-        local_scalar_t__ mustarU(DUMMY_VAR__);
-        (void) mustarU;  // dummy to suppress unused var warning
-        stan::math::initialize(mustarU, DUMMY_VAR__);
-        stan::math::fill(mustarU, DUMMY_VAR__);
-        current_statement_begin__ = 8;
-        local_scalar_t__ alphaL(DUMMY_VAR__);
-        (void) alphaL;  // dummy to suppress unused var warning
-        stan::math::initialize(alphaL, DUMMY_VAR__);
-        stan::math::fill(alphaL, DUMMY_VAR__);
-        current_statement_begin__ = 9;
-        local_scalar_t__ alphaU(DUMMY_VAR__);
-        (void) alphaU;  // dummy to suppress unused var warning
-        stan::math::initialize(alphaU, DUMMY_VAR__);
-        stan::math::fill(alphaU, DUMMY_VAR__);
-        current_statement_begin__ = 10;
         local_scalar_t__ kmm(DUMMY_VAR__);
         (void) kmm;  // dummy to suppress unused var warning
         stan::math::initialize(kmm, DUMMY_VAR__);
         stan::math::fill(kmm, DUMMY_VAR__);
-        current_statement_begin__ = 11;
+        current_statement_begin__ = 7;
         local_scalar_t__ kms(DUMMY_VAR__);
         (void) kms;  // dummy to suppress unused var warning
         stan::math::initialize(kms, DUMMY_VAR__);
         stan::math::fill(kms, DUMMY_VAR__);
-        current_statement_begin__ = 12;
+        current_statement_begin__ = 8;
         local_scalar_t__ kss(DUMMY_VAR__);
         (void) kss;  // dummy to suppress unused var warning
         stan::math::initialize(kss, DUMMY_VAR__);
         stan::math::fill(kss, DUMMY_VAR__);
+        current_statement_begin__ = 9;
+        local_scalar_t__ Si(DUMMY_VAR__);
+        (void) Si;  // dummy to suppress unused var warning
+        stan::math::initialize(Si, DUMMY_VAR__);
+        stan::math::fill(Si, DUMMY_VAR__);
+        current_statement_begin__ = 10;
+        local_scalar_t__ cz(DUMMY_VAR__);
+        (void) cz;  // dummy to suppress unused var warning
+        stan::math::initialize(cz, DUMMY_VAR__);
+        stan::math::fill(cz, DUMMY_VAR__);
+        current_statement_begin__ = 11;
+        local_scalar_t__ dnor(DUMMY_VAR__);
+        (void) dnor;  // dummy to suppress unused var warning
+        stan::math::initialize(dnor, DUMMY_VAR__);
+        stan::math::fill(dnor, DUMMY_VAR__);
+        current_statement_begin__ = 12;
+        local_scalar_t__ pnor(DUMMY_VAR__);
+        (void) pnor;  // dummy to suppress unused var warning
+        stan::math::initialize(pnor, DUMMY_VAR__);
+        stan::math::fill(pnor, DUMMY_VAR__);
         current_statement_begin__ = 13;
+        local_scalar_t__ r(DUMMY_VAR__);
+        (void) r;  // dummy to suppress unused var warning
+        stan::math::initialize(r, DUMMY_VAR__);
+        stan::math::fill(r, DUMMY_VAR__);
+        current_statement_begin__ = 14;
         validate_non_negative_index("fishinfo", "2", 2);
         validate_non_negative_index("fishinfo", "2", 2);
         Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, Eigen::Dynamic> fishinfo(2, 2);
         stan::math::initialize(fishinfo, DUMMY_VAR__);
         stan::math::fill(fishinfo, DUMMY_VAR__);
-        current_statement_begin__ = 14;
-        local_scalar_t__ sigma(DUMMY_VAR__);
-        (void) sigma;  // dummy to suppress unused var warning
-        stan::math::initialize(sigma, DUMMY_VAR__);
-        stan::math::fill(sigma, DUMMY_VAR__);
-        current_statement_begin__ = 15;
-        local_scalar_t__ LL(DUMMY_VAR__);
-        (void) LL;  // dummy to suppress unused var warning
-        stan::math::initialize(LL, DUMMY_VAR__);
-        stan::math::fill(LL, DUMMY_VAR__);
-        current_statement_begin__ = 16;
-        local_scalar_t__ UU(DUMMY_VAR__);
-        (void) UU;  // dummy to suppress unused var warning
-        stan::math::initialize(UU, DUMMY_VAR__);
-        stan::math::fill(UU, DUMMY_VAR__);
-        current_statement_begin__ = 18;
-        int n(0);
-        (void) n;  // dummy to suppress unused var warning
-        stan::math::fill(n, std::numeric_limits<int>::min());
-        current_statement_begin__ = 22;
+        current_statement_begin__ = 17;
         validate_non_negative_index("fishinfototal", "2", 2);
         validate_non_negative_index("fishinfototal", "2", 2);
         Eigen::Matrix<local_scalar_t__, Eigen::Dynamic, Eigen::Dynamic> fishinfototal(2, 2);
         stan::math::initialize(fishinfototal, DUMMY_VAR__);
         stan::math::fill(fishinfototal, DUMMY_VAR__);
-        current_statement_begin__ = 23;
+        current_statement_begin__ = 18;
         stan::model::assign(fishinfototal, 
                     stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                     0, 
                     "assigning variable fishinfototal");
-        current_statement_begin__ = 24;
+        current_statement_begin__ = 19;
         stan::model::assign(fishinfototal, 
                     stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                     0, 
                     "assigning variable fishinfototal");
-        current_statement_begin__ = 25;
+        current_statement_begin__ = 20;
         stan::model::assign(fishinfototal, 
                     stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                     0, 
                     "assigning variable fishinfototal");
-        current_statement_begin__ = 26;
+        current_statement_begin__ = 21;
         stan::model::assign(fishinfototal, 
                     stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                     0, 
                     "assigning variable fishinfototal");
-        current_statement_begin__ = 30;
+        current_statement_begin__ = 25;
         for (int i = 1; i <= k; ++i) {
+            current_statement_begin__ = 27;
+            stan::math::assign(Si, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2))));
+            current_statement_begin__ = 28;
+            stan::math::assign(cz, (((get_base1(sei, i, "sei", 1) * get_base1(tcrit, i, "tcrit", 1)) - mu) / Si));
+            current_statement_begin__ = 29;
+            stan::math::assign(dnor, stan::math::exp(normal_log(cz, 0, 1)));
+            current_statement_begin__ = 30;
+            stan::math::assign(pnor, stan::math::exp(normal_cdf_log(cz, 0, 1)));
+            current_statement_begin__ = 31;
+            stan::math::assign(r, (dnor / pnor));
             current_statement_begin__ = 33;
-            stan::math::assign(sigma, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2))));
+            stan::math::assign(kmm, (pow(Si, -(2)) * (((cz * r) + pow(r, 2)) - 1)));
+            current_statement_begin__ = 34;
+            stan::math::assign(kms, (((tau * pow(Si, -(3))) * r) * ((pow(cz, 2) + (cz * r)) + 1)));
+            current_statement_begin__ = 35;
+            stan::math::assign(kss, ((pow(tau, 2) * pow(Si, -(4))) * ((((pow(cz, 3) * r) + (pow(cz, 2) * pow(r, 2))) + (cz * r)) - 2)));
             current_statement_begin__ = 37;
-            if (as_bool(logical_eq(get_base1(affirm, i, "affirm", 1), 0))) {
-                current_statement_begin__ = 38;
-                stan::math::assign(UU, (get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)));
-                current_statement_begin__ = 40;
-                stan::math::assign(mustarL, -(999));
-                current_statement_begin__ = 41;
-                stan::math::assign(mustarU, ((UU - mu) / sigma));
-            } else if (as_bool(logical_eq(get_base1(affirm, i, "affirm", 1), 1))) {
-                current_statement_begin__ = 43;
-                stan::math::assign(LL, (get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)));
-                current_statement_begin__ = 45;
-                stan::math::assign(mustarL, ((LL - mu) / sigma));
-                current_statement_begin__ = 46;
-                stan::math::assign(mustarU, 999);
-            }
-            current_statement_begin__ = 50;
-            stan::math::assign(n, 1);
-            current_statement_begin__ = 57;
-            stan::math::assign(alphaL, stan::math::exp((normal_log(mustarL, 0, 1) - log_diff_exp(normal_cdf_log(mustarU, 0, 1), normal_cdf_log(mustarL, 0, 1)))));
-            current_statement_begin__ = 61;
-            stan::math::assign(alphaU, stan::math::exp((normal_log(mustarU, 0, 1) - log_diff_exp(normal_cdf_log(mustarU, 0, 1), normal_cdf_log(mustarL, 0, 1)))));
-            current_statement_begin__ = 67;
-            stan::math::assign(kmm, ((-(n) / pow(sigma, 2)) + ((n / pow(sigma, 2)) * ((pow((alphaU - alphaL), 2) + (alphaU * mustarU)) - (alphaL * mustarL)))));
-            current_statement_begin__ = 68;
-            stan::math::assign(kms, ((((-(2) * n) / pow(sigma, 2)) * (alphaL - alphaU)) + ((n / pow(sigma, 2)) * (((alphaL - alphaU) + ((alphaU * pow(mustarU, 2)) - (alphaL * pow(mustarL, 2)))) + ((alphaL - alphaU) * ((alphaL * mustarL) - (alphaU * mustarU)))))));
-            current_statement_begin__ = 71;
-            stan::math::assign(kss, (((n / pow(sigma, 2)) - (((3 * n) / pow(sigma, 2)) * ((1 + (mustarL * alphaL)) - (mustarU * alphaU)))) + ((n / pow(sigma, 2)) * ((((mustarU * alphaU) * (pow(mustarU, 2) - 2)) - ((mustarL * alphaL) * (pow(mustarL, 2) - 2))) + pow(((alphaU * mustarU) - (alphaL * mustarL)), 2)))));
-            current_statement_begin__ = 77;
-            stan::math::assign(kms, ((kms * tau) / stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
-            current_statement_begin__ = 78;
-            stan::math::assign(kss, ((kss * pow(tau, 2)) / (pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2))));
-            current_statement_begin__ = 80;
             stan::model::assign(fishinfo, 
                         stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                         -(kmm), 
                         "assigning variable fishinfo");
-            current_statement_begin__ = 81;
+            current_statement_begin__ = 38;
             stan::model::assign(fishinfo, 
                         stan::model::cons_list(stan::model::index_uni(1), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                         -(kms), 
                         "assigning variable fishinfo");
-            current_statement_begin__ = 82;
+            current_statement_begin__ = 39;
             stan::model::assign(fishinfo, 
                         stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(1), stan::model::nil_index_list())), 
                         -(kms), 
                         "assigning variable fishinfo");
-            current_statement_begin__ = 83;
+            current_statement_begin__ = 40;
             stan::model::assign(fishinfo, 
                         stan::model::cons_list(stan::model::index_uni(2), stan::model::cons_list(stan::model::index_uni(2), stan::model::nil_index_list())), 
                         -(kss), 
                         "assigning variable fishinfo");
-            current_statement_begin__ = 86;
+            current_statement_begin__ = 43;
             stan::math::assign(fishinfototal, add(fishinfototal, fishinfo));
         }
-        current_statement_begin__ = 88;
+        current_statement_begin__ = 47;
         return stan::math::promote_scalar<fun_return_scalar_t__>(stan::math::sqrt(determinant(fishinfototal)));
         }
     } catch (const std::exception& e) {
@@ -208,15 +175,14 @@ jeffreys_prior(const T0__& mu,
     }
 }
 struct jeffreys_prior_functor__ {
-    template <typename T0__, typename T1__, typename T3__, typename T4__, typename T5__>
-        typename boost::math::tools::promote_args<T0__, T1__, T3__, T4__, typename boost::math::tools::promote_args<T5__>::type>::type
+    template <typename T0__, typename T1__, typename T3__, typename T4__>
+        typename boost::math::tools::promote_args<T0__, T1__, T3__, T4__>::type
     operator()(const T0__& mu,
                    const T1__& tau,
                    const int& k,
                    const std::vector<T3__>& sei,
-                   const std::vector<T4__>& tcrit,
-                   const std::vector<T5__>& affirm, std::ostream* pstream__) const {
-        return jeffreys_prior(mu, tau, k, sei, tcrit, affirm, pstream__);
+                   const std::vector<T4__>& tcrit, std::ostream* pstream__) const {
+        return jeffreys_prior(mu, tau, k, sei, tcrit, pstream__);
     }
 };
 #include <stan_meta_header.hpp>
@@ -226,7 +192,6 @@ private:
         int k;
         std::vector<double> sei;
         std::vector<double> tcrit;
-        std::vector<double> affirm;
         std::vector<double> y;
 public:
     model_phacking_rtma(stan::io::var_context& context__,
@@ -258,14 +223,14 @@ public:
         (void) DUMMY_VAR__;  // suppress unused var warning
         try {
             // initialize data block variables from context__
-            current_statement_begin__ = 93;
+            current_statement_begin__ = 52;
             context__.validate_dims("data initialization", "k", "int", context__.to_vec());
             k = int(0);
             vals_i__ = context__.vals_i("k");
             pos__ = 0;
             k = vals_i__[pos__++];
             check_greater_or_equal(function__, "k", k, 0);
-            current_statement_begin__ = 94;
+            current_statement_begin__ = 53;
             validate_non_negative_index("sei", "k", k);
             context__.validate_dims("data initialization", "sei", "double", context__.to_vec(k));
             sei = std::vector<double>(k, double(0));
@@ -275,7 +240,7 @@ public:
             for (size_t k_0__ = 0; k_0__ < sei_k_0_max__; ++k_0__) {
                 sei[k_0__] = vals_r__[pos__++];
             }
-            current_statement_begin__ = 95;
+            current_statement_begin__ = 54;
             validate_non_negative_index("tcrit", "k", k);
             context__.validate_dims("data initialization", "tcrit", "double", context__.to_vec(k));
             tcrit = std::vector<double>(k, double(0));
@@ -285,17 +250,7 @@ public:
             for (size_t k_0__ = 0; k_0__ < tcrit_k_0_max__; ++k_0__) {
                 tcrit[k_0__] = vals_r__[pos__++];
             }
-            current_statement_begin__ = 96;
-            validate_non_negative_index("affirm", "k", k);
-            context__.validate_dims("data initialization", "affirm", "double", context__.to_vec(k));
-            affirm = std::vector<double>(k, double(0));
-            vals_r__ = context__.vals_r("affirm");
-            pos__ = 0;
-            size_t affirm_k_0_max__ = k;
-            for (size_t k_0__ = 0; k_0__ < affirm_k_0_max__; ++k_0__) {
-                affirm[k_0__] = vals_r__[pos__++];
-            }
-            current_statement_begin__ = 97;
+            current_statement_begin__ = 55;
             validate_non_negative_index("y", "k", k);
             context__.validate_dims("data initialization", "y", "double", context__.to_vec(k));
             y = std::vector<double>(k, double(0));
@@ -311,9 +266,9 @@ public:
             // validate, set parameter ranges
             num_params_r__ = 0U;
             param_ranges_i__.clear();
-            current_statement_begin__ = 101;
+            current_statement_begin__ = 59;
             num_params_r__ += 1;
-            current_statement_begin__ = 102;
+            current_statement_begin__ = 60;
             num_params_r__ += 1;
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
@@ -332,7 +287,7 @@ public:
         (void) pos__; // dummy call to supress warning
         std::vector<double> vals_r__;
         std::vector<int> vals_i__;
-        current_statement_begin__ = 101;
+        current_statement_begin__ = 59;
         if (!(context__.contains_r("mu")))
             stan::lang::rethrow_located(std::runtime_error(std::string("Variable mu missing")), current_statement_begin__, prog_reader__());
         vals_r__ = context__.vals_r("mu");
@@ -345,7 +300,7 @@ public:
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(std::runtime_error(std::string("Error transforming variable mu: ") + e.what()), current_statement_begin__, prog_reader__());
         }
-        current_statement_begin__ = 102;
+        current_statement_begin__ = 60;
         if (!(context__.contains_r("tau")))
             stan::lang::rethrow_located(std::runtime_error(std::string("Variable tau missing")), current_statement_begin__, prog_reader__());
         vals_r__ = context__.vals_r("tau");
@@ -383,14 +338,14 @@ public:
         try {
             stan::io::reader<local_scalar_t__> in__(params_r__, params_i__);
             // model parameters
-            current_statement_begin__ = 101;
+            current_statement_begin__ = 59;
             local_scalar_t__ mu;
             (void) mu;  // dummy to suppress unused var warning
             if (jacobian__)
                 mu = in__.scalar_constrain(lp__);
             else
                 mu = in__.scalar_constrain();
-            current_statement_begin__ = 102;
+            current_statement_begin__ = 60;
             local_scalar_t__ tau;
             (void) tau;  // dummy to suppress unused var warning
             if (jacobian__)
@@ -398,22 +353,14 @@ public:
             else
                 tau = in__.scalar_lb_constrain(0);
             // model body
-            current_statement_begin__ = 110;
-            lp_accum__.add(stan::math::log(jeffreys_prior(mu, tau, k, sei, tcrit, affirm, pstream__)));
-            current_statement_begin__ = 111;
+            current_statement_begin__ = 65;
+            lp_accum__.add(stan::math::log(jeffreys_prior(mu, tau, k, sei, tcrit, pstream__)));
+            current_statement_begin__ = 68;
             for (int i = 1; i <= k; ++i) {
-                current_statement_begin__ = 112;
-                if (as_bool(logical_eq(get_base1(affirm, i, "affirm", 1), 0))) {
-                    current_statement_begin__ = 113;
-                    lp_accum__.add(normal_log<propto__>(get_base1(y, i, "y", 1), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
-                    if (get_base1(y, i, "y", 1) > (get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1))) lp_accum__.add(-std::numeric_limits<double>::infinity());
-                    else lp_accum__.add(-normal_cdf_log((get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
-                } else if (as_bool(logical_eq(get_base1(affirm, i, "affirm", 1), 1))) {
-                    current_statement_begin__ = 115;
-                    lp_accum__.add(normal_log<propto__>(get_base1(y, i, "y", 1), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
-                    if (get_base1(y, i, "y", 1) < (get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1))) lp_accum__.add(-std::numeric_limits<double>::infinity());
-                    else lp_accum__.add(-normal_ccdf_log((get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
-                }
+                current_statement_begin__ = 69;
+                lp_accum__.add(normal_log<propto__>(get_base1(y, i, "y", 1), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
+                if (get_base1(y, i, "y", 1) > (get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1))) lp_accum__.add(-std::numeric_limits<double>::infinity());
+                else lp_accum__.add(-normal_cdf_log((get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))));
             }
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
@@ -440,19 +387,10 @@ public:
         names__.push_back("log_lik");
         names__.push_back("log_prior");
         names__.push_back("log_post");
-        names__.push_back("critScaled");
-        names__.push_back("log_lik_sanity");
-        names__.push_back("log_prior_sanity");
     }
     void get_dims(std::vector<std::vector<size_t> >& dimss__) const {
         dimss__.resize(0);
         std::vector<size_t> dims__;
-        dims__.resize(0);
-        dimss__.push_back(dims__);
-        dims__.resize(0);
-        dimss__.push_back(dims__);
-        dims__.resize(0);
-        dimss__.push_back(dims__);
         dims__.resize(0);
         dimss__.push_back(dims__);
         dims__.resize(0);
@@ -492,77 +430,40 @@ public:
             if (!include_gqs__ && !include_tparams__) return;
             if (!include_gqs__) return;
             // declare and define generated quantities
-            current_statement_begin__ = 125;
+            current_statement_begin__ = 78;
             double log_lik;
             (void) log_lik;  // dummy to suppress unused var warning
             stan::math::initialize(log_lik, DUMMY_VAR__);
             stan::math::fill(log_lik, DUMMY_VAR__);
             stan::math::assign(log_lik,0);
-            current_statement_begin__ = 126;
+            current_statement_begin__ = 79;
             double log_prior;
             (void) log_prior;  // dummy to suppress unused var warning
             stan::math::initialize(log_prior, DUMMY_VAR__);
             stan::math::fill(log_prior, DUMMY_VAR__);
-            stan::math::assign(log_prior,stan::math::log(jeffreys_prior(mu, tau, k, sei, tcrit, affirm, pstream__)));
-            current_statement_begin__ = 127;
+            stan::math::assign(log_prior,stan::math::log(jeffreys_prior(mu, tau, k, sei, tcrit, pstream__)));
+            current_statement_begin__ = 80;
             double log_post;
             (void) log_post;  // dummy to suppress unused var warning
             stan::math::initialize(log_post, DUMMY_VAR__);
             stan::math::fill(log_post, DUMMY_VAR__);
-            current_statement_begin__ = 130;
-            double critScaled;
-            (void) critScaled;  // dummy to suppress unused var warning
-            stan::math::initialize(critScaled, DUMMY_VAR__);
-            stan::math::fill(critScaled, DUMMY_VAR__);
-            current_statement_begin__ = 134;
-            double log_lik_sanity;
-            (void) log_lik_sanity;  // dummy to suppress unused var warning
-            stan::math::initialize(log_lik_sanity, DUMMY_VAR__);
-            stan::math::fill(log_lik_sanity, DUMMY_VAR__);
-            stan::math::assign(log_lik_sanity,0);
-            current_statement_begin__ = 135;
-            double log_prior_sanity;
-            (void) log_prior_sanity;  // dummy to suppress unused var warning
-            stan::math::initialize(log_prior_sanity, DUMMY_VAR__);
-            stan::math::fill(log_prior_sanity, DUMMY_VAR__);
-            stan::math::assign(log_prior_sanity,stan::math::log(jeffreys_prior(2, 2, k, sei, tcrit, affirm, pstream__)));
             // generated quantities statements
-            current_statement_begin__ = 137;
+            current_statement_begin__ = 83;
             for (int i = 1; i <= k; ++i) {
-                current_statement_begin__ = 138;
+                current_statement_begin__ = 85;
                 stan::math::assign(log_lik, (log_lik + normal_log(get_base1(y, i, "y", 1), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2))))));
-                current_statement_begin__ = 139;
-                stan::math::assign(log_lik_sanity, (log_lik_sanity + normal_log(get_base1(y, i, "y", 1), 2, stan::math::sqrt((pow(2, 2) + pow(get_base1(sei, i, "sei", 1), 2))))));
-                current_statement_begin__ = 141;
-                stan::math::assign(critScaled, (get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)));
-                current_statement_begin__ = 146;
-                if (as_bool(logical_lte(get_base1(y, i, "y", 1), critScaled))) {
-                    current_statement_begin__ = 148;
-                    stan::math::assign(log_lik, (log_lik + (-(1) * normal_cdf_log(critScaled, mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))))));
-                    current_statement_begin__ = 149;
-                    stan::math::assign(log_lik_sanity, (log_lik_sanity + (-(1) * normal_cdf_log(critScaled, 2, stan::math::sqrt((pow(2, 2) + pow(get_base1(sei, i, "sei", 1), 2)))))));
-                } else if (as_bool(logical_gt(get_base1(y, i, "y", 1), critScaled))) {
-                    current_statement_begin__ = 153;
-                    stan::math::assign(log_lik, (log_lik + (-(1) * stan::math::log((1 - normal_cdf(critScaled, mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))))))));
-                    current_statement_begin__ = 154;
-                    stan::math::assign(log_lik_sanity, (log_lik_sanity + (-(1) * stan::math::log((1 - normal_cdf(critScaled, 2, stan::math::sqrt((pow(2, 2) + pow(get_base1(sei, i, "sei", 1), 2)))))))));
-                }
+                current_statement_begin__ = 87;
+                stan::math::assign(log_lik, (log_lik + (-(1) * normal_cdf_log((get_base1(tcrit, i, "tcrit", 1) * get_base1(sei, i, "sei", 1)), mu, stan::math::sqrt((pow(tau, 2) + pow(get_base1(sei, i, "sei", 1), 2)))))));
             }
-            current_statement_begin__ = 157;
+            current_statement_begin__ = 90;
             stan::math::assign(log_post, (log_prior + log_lik));
             // validate, write generated quantities
-            current_statement_begin__ = 125;
+            current_statement_begin__ = 78;
             vars__.push_back(log_lik);
-            current_statement_begin__ = 126;
+            current_statement_begin__ = 79;
             vars__.push_back(log_prior);
-            current_statement_begin__ = 127;
+            current_statement_begin__ = 80;
             vars__.push_back(log_post);
-            current_statement_begin__ = 130;
-            vars__.push_back(critScaled);
-            current_statement_begin__ = 134;
-            vars__.push_back(log_lik_sanity);
-            current_statement_begin__ = 135;
-            vars__.push_back(log_prior_sanity);
         } catch (const std::exception& e) {
             stan::lang::rethrow_located(e, current_statement_begin__, prog_reader__());
             // Next line prevents compiler griping about no return
@@ -612,15 +513,6 @@ public:
         param_name_stream__.str(std::string());
         param_name_stream__ << "log_post";
         param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "critScaled";
-        param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "log_lik_sanity";
-        param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "log_prior_sanity";
-        param_names__.push_back(param_name_stream__.str());
     }
     void unconstrained_param_names(std::vector<std::string>& param_names__,
                                    bool include_tparams__ = true,
@@ -644,15 +536,6 @@ public:
         param_names__.push_back(param_name_stream__.str());
         param_name_stream__.str(std::string());
         param_name_stream__ << "log_post";
-        param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "critScaled";
-        param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "log_lik_sanity";
-        param_names__.push_back(param_name_stream__.str());
-        param_name_stream__.str(std::string());
-        param_name_stream__ << "log_prior_sanity";
         param_names__.push_back(param_name_stream__.str());
     }
 }; // model
