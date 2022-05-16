@@ -3,8 +3,7 @@
 #' @param rtma Output of \code{phacking_rtma()}.
 #'
 #' @return A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
-#'   (their fitted CDF), \code{ecdfi} (their empirical CDF), and \code{affirm}
-#'   (whether effect is affirmative).
+#'   (their fitted CDF) and \code{ecdfi} (their empirical CDF).
 #' @export
 #'
 #' @references
@@ -16,17 +15,19 @@
 rtma_cdf <- function(rtma) {
   mu <- rtma$stats %>% filter(.data$param == "mu") %>% pull(.data$median)
   tau <- rtma$stats %>% filter(.data$param == "tau") %>% pull(.data$median)
+  tcrit <- rtma$values$tcrit
   ptrunc <- truncnorm::ptruncnorm
 
   tibble(yi = rtma$values$yi,
          sei = rtma$values$sei,
          affirm = rtma$values$affirm) %>%
+    filter(!affirm) %>%
     mutate(ecdfi = ecdf(.data$yi)(.data$yi),
-           a = if_else(.data$affirm, rtma$values$tcrit * .data$sei, -Inf),
-           b = if_else(.data$affirm, Inf, rtma$values$tcrit * .data$sei),
-           cdfi = ptrunc(q = .data$yi, a = .data$a, b = .data$b, mean = mu,
-                         sd = sqrt(tau ^ 2 + .data$sei ^ 2))) %>%
-    select(.data$yi, .data$cdfi, .data$ecdfi, .data$affirm)
+           # a = if_else(.data$affirm, rtma$values$tcrit * .data$sei, -Inf),
+           # b = if_else(.data$affirm, Inf, rtma$values$tcrit * .data$sei),
+           cdfi = ptrunc(q = .data$yi, a = -Inf, b = tcrit * .data$sei,
+                         mean = mu, sd = sqrt(tau ^ 2 + .data$sei ^ 2))) %>%
+    select(.data$yi, .data$cdfi, .data$ecdfi) #, .data$affirm)
 }
 
 #' Diagnostic quantile-quantile plot for a right-truncated meta-analysis
@@ -41,7 +42,7 @@ rtma_cdf <- function(rtma) {
 #' rtma_qqplot(lodder_rtma)
 rtma_qqplot <- function(rtma) {
   cdf <- rtma_cdf(rtma)
-  ggplot(cdf, aes(x = .data$cdfi, y = .data$ecdfi, colour = .data$affirm)) +
+  ggplot(cdf, aes(x = .data$cdfi, y = .data$ecdfi)) +
     coord_equal() +
     geom_abline() +
     geom_point(size = 2, alpha = 0.5) +

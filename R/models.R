@@ -37,8 +37,9 @@ phacking_rtma <- function(yi,
   k <- length(yi)
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
-  stan_data <- list(y = yi, sei = sei, k = k,
-                    tcrit = rep(tcrit, k))
+  nonaffirm <- tibble(yi = yi, sei = sei, affirm = affirm) %>% filter(!affirm)
+  stan_data <- list(y = nonaffirm$yi, sei = nonaffirm$sei, k = sum(!affirm),
+                    tcrit = rep(tcrit, sum(!affirm)))
 
   values <- list(
     k = k,

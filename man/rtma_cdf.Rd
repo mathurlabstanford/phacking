@@ -11,8 +11,7 @@ rtma_cdf(rtma)
 }
 \value{
 A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
-(their fitted CDF), \code{ecdfi} (their empirical CDF), and \code{affirm}
-(whether effect is affirmative).
+(their fitted CDF) and \code{ecdfi} (their empirical CDF).
 }
 \description{
 Compute theoretical and empirical CDFs for a right-truncated meta-analysis
