@@ -37,14 +37,15 @@ phacking_rtma <- function(yi,
   k <- length(yi)
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
+  k_nonaffirm <- sum(!affirm)
   nonaffirm <- tibble(yi = yi, sei = sei, affirm = affirm) %>% filter(!affirm)
-  stan_data <- list(y = nonaffirm$yi, sei = nonaffirm$sei, k = sum(!affirm),
-                    tcrit = rep(tcrit, sum(!affirm)))
+  stan_data <- list(y = nonaffirm$yi, sei = nonaffirm$sei, k = k_nonaffirm,
+                    tcrit = rep(tcrit, k_nonaffirm))
 
   values <- list(
     k = k,
-    k_affirmative = sum(affirm),
-    k_nonaffirmative = sum(!affirm),
+    k_affirmative = k - k_nonaffirm,
+    k_nonaffirmative = k_nonaffirm,
     favor_positive = favor_positive,
     alpha_select = alpha_select,
     tcrit = tcrit,
@@ -60,17 +61,14 @@ phacking_rtma <- function(yi,
                               control = stan_control,
                               init = function() list(mu = 0, tau = 1))
 
-  param_median <- function(p) median(unlist(rstan::extract(stan_fit, p)))
+  stan_extract <- rstan::extract(stan_fit)
+  medians <- c(median(stan_extract$mu), median(stan_extract$tau))
 
-  ## MM extracts max-lp iterate
-  ext = rstan::extract(stan_fit) # a vector of all post-WU iterates across all chains
-  best.ind = which.max(ext$log_post)  # single iterate with best log-posterior should be very close to MAP
-  # posterior means, posterior medians, and max-LP iterate
-  muhat_maxlp = ext$mu[best.ind]
-  tauhat_maxlp = ext$tau[best.ind]
-
-  # we'd then pass (muhat_maxlp, tauhat_maxlp) to mle() to find the actual posterior mode
-  ## end MM
+  index_maxlp <- which.max(stan_extract$log_post)
+  mu_maxlp <- stan_extract$mu[index_maxlp]
+  tau_maxlp <- stan_extract$tau[index_maxlp]
+  post <- mle_params(mu_maxlp, tau_maxlp, nonaffirm$yi, nonaffirm$sei, tcrit)
+  modes <- c(post@coef[["mu"]], post@coef[["tau"]])
 
   stan_summary <- rstan::summary(stan_fit)$summary %>%
     as_tibble(rownames = "param")
@@ -79,8 +77,7 @@ phacking_rtma <- function(yi,
     filter(.data$param %in% c("mu", "tau")) %>%
     select(.data$param, .data$mean, se = .data$se_mean, ci_lower = .data$`2.5%`,
            ci_upper = .data$`97.5%`, r_hat = .data$Rhat) %>%
-    mutate(median = c(param_median("mu"), param_median("tau")),
-           .after = .data$param)
+    mutate(mode = modes, median = medians, .after = .data$param)
 
   return(list(values = values, stats = stan_stats, fit = stan_fit))
 

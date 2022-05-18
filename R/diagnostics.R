@@ -21,13 +21,11 @@ rtma_cdf <- function(rtma) {
   tibble(yi = rtma$values$yi,
          sei = rtma$values$sei,
          affirm = rtma$values$affirm) %>%
-    filter(!affirm) %>%
+    filter(!.data$affirm) %>%
     mutate(ecdfi = ecdf(.data$yi)(.data$yi),
-           # a = if_else(.data$affirm, rtma$values$tcrit * .data$sei, -Inf),
-           # b = if_else(.data$affirm, Inf, rtma$values$tcrit * .data$sei),
            cdfi = ptrunc(q = .data$yi, a = -Inf, b = tcrit * .data$sei,
                          mean = mu, sd = sqrt(tau ^ 2 + .data$sei ^ 2))) %>%
-    select(.data$yi, .data$cdfi, .data$ecdfi) #, .data$affirm)
+    select(.data$yi, .data$cdfi, .data$ecdfi)
 }
 
 #' Diagnostic quantile-quantile plot for a right-truncated meta-analysis
@@ -63,17 +61,15 @@ rtma_qqplot <- function(rtma) {
 #' @export
 #'
 #' @examples
-#' z_density(lodder$zi)
+#' z_density(lodder$yi, lodder$vi)
 z_density <- function(yi, sei, vi, alpha_select = 0.05, crit_color = "red") {
 
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
 
-  zi = yi/sei
-
   tcrit <- qnorm(1 - alpha_select / 2)
-  qplot(zi, geom = "density", adjust = 0.3) +
+  qplot(yi / sei, geom = "density", adjust = 0.3) +
     geom_vline(xintercept = 0, color = "gray") +
     geom_vline(xintercept = tcrit, linetype = "dashed", color = crit_color) +
     annotate(geom = "text", label = sprintf("Z = %.2f", tcrit), x = tcrit - 0.2,

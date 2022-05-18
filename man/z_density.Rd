@@ -21,5 +21,5 @@ z_density(yi, sei, vi, alpha_select = 0.05, crit_color = "red")
 Plots the Z-scores of all published point estimates. When p-hacking favors affirmative estimates over nonaffirmative estimates, as our methods and others assume, Z-scores may disproportionately concentrate just above the critical value (e.g., 1.96). Importantly, the presence of p-hacking does not \emph{guarantee} a concentration of Z-scores just above the critical value, so it is prudent to proceed with the fitting RTMA even if no such concentration is apparent. In contrast, if Z-scores also concentrate just \emph{below} the critical value, or if they also concentrate below the sign-reversed critical value (e.g., -1.96), this could indicate forms of p-hacking that violate the assumptions of RTMA.
 }
 \examples{
-z_density(lodder$zi)
+z_density(lodder$yi, lodder$vi)
 }

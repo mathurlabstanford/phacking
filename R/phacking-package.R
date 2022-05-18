@@ -10,8 +10,8 @@
 #' @import Rcpp
 #' @importFrom rstan sampling
 #'
-#' @importFrom stats ecdf median qnorm
-#' @importFrom dplyr %>% as_tibble filter if_else mutate pull select tibble
+#' @importFrom stats dnorm ecdf median pnorm qnorm
+#' @importFrom dplyr %>% as_tibble filter if_else mutate pull rowwise select tibble
 #' @import ggplot2
 #' @importFrom rlang .data
 #'
