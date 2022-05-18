@@ -38,8 +38,24 @@ an estimate to be significant).}
 \item{parallelize}{Logical indicating whether to parallelize sampling.}
 }
 \value{
-A list with three elements, \code{values}, \code{stats} and
-\code{fit}.
+An object of class \code{metabias}, which is list with four elements:
+\describe{
+\item{data}{A tibble with one row per study and the columns \code{yi},
+\code{vi}, \code{sei}, and \code{affirm} (logical indicating
+whether the study result is affirmative).}
+\item{values}{A vector with the elements \code{k} (number of studies),
+\code{k_affirmative} (number of affirmative studies),
+\code{k_nonaffirmative} (number of nonaffirmative studies),
+\code{favor_positive} (as passed to \code{phacking_rtma()}),
+\code{alpha_select} (as passed to \code{phacking_rtma()}),
+\code{tcrit} (critical t-value based on \code{alpha_select}),
+and \code{mle_converged} (logical indicating whether the
+optimization to find the posterior mode converged).}
+\item{stats}{A tibble two rows and the columns \code{param} (mu and tau),
+\code{mode}, \code{median}, \code{mean}, \code{se},
+\code{ci_lower}, \code{ci_upper}, and \code{r_hat}.}
+\item{fit}{A \code{stanfit} object (the result of fitting the RTMA model).}
+}
 }
 \description{
 Fits right-truncated meta-analysis (RTMA), a bias correction for the joint
