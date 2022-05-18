@@ -18,9 +18,10 @@ rtma_cdf <- function(rtma) {
   tcrit <- rtma$values$tcrit
   ptrunc <- truncnorm::ptruncnorm
 
-  tibble(yi = rtma$values$yi,
-         sei = rtma$values$sei,
-         affirm = rtma$values$affirm) %>%
+  # tibble(yi = rtma$values$yi,
+  #        sei = rtma$values$sei,
+  #        affirm = rtma$values$affirm) %>%
+  rtma$data %>%
     filter(!.data$affirm) %>%
     mutate(ecdfi = ecdf(.data$yi)(.data$yi),
            cdfi = ptrunc(q = .data$yi, a = -Inf, b = tcrit * .data$sei,

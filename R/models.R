@@ -48,22 +48,17 @@ phacking_rtma <- function(yi,
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
   k_nonaffirm <- sum(!affirm)
-  nonaffirm <- tibble(yi = yi, sei = sei, affirm = affirm) %>% filter(!affirm)
+  dat <- tibble(yi = yi, sei = sei, affirm = affirm)
+  nonaffirm <- dat %>% filter(!affirm)
   stan_data <- list(y = nonaffirm$yi, sei = nonaffirm$sei, k = k_nonaffirm,
                     tcrit = rep(tcrit, k_nonaffirm))
 
-  values <- list(
-    k = k,
-    k_affirmative = k - k_nonaffirm,
-    k_nonaffirmative = k_nonaffirm,
-    favor_positive = favor_positive,
-    alpha_select = alpha_select,
-    tcrit = tcrit,
-    yi = yi,
-    vi = vi,
-    sei = sei,
-    affirm = affirm
-  )
+  vals <- list(k = k,
+               k_affirmative = k - k_nonaffirm,
+               k_nonaffirmative = k_nonaffirm,
+               favor_positive = favor_positive,
+               alpha_select = alpha_select,
+               tcrit = tcrit)
 
   if (parallelize) options(mc.cores = parallel::detectCores())
   stan_fit <- rstan::sampling(stanmodels$phacking_rtma,
@@ -77,8 +72,10 @@ phacking_rtma <- function(yi,
   index_maxlp <- which.max(stan_extract$log_post)
   mu_maxlp <- stan_extract$mu[index_maxlp]
   tau_maxlp <- stan_extract$tau[index_maxlp]
-  post <- mle_params(mu_maxlp, tau_maxlp, nonaffirm$yi, nonaffirm$sei, tcrit)
-  modes <- c(post@coef[["mu"]], post@coef[["tau"]])
+  mle_fit <- mle_params(mu_maxlp, tau_maxlp, nonaffirm$yi, nonaffirm$sei, tcrit)
+  modes <- c(mle_fit@coef[["mu"]], mle_fit@coef[["tau"]])
+  mle_converged <- mle_fit@details$convergence == 0
+  vals$mle_converged <- mle_converged
 
   stan_summary <- rstan::summary(stan_fit)$summary %>%
     as_tibble(rownames = "param")
@@ -89,6 +86,8 @@ phacking_rtma <- function(yi,
            ci_upper = .data$`97.5%`, r_hat = .data$Rhat) %>%
     mutate(mode = modes, median = medians, .after = .data$param)
 
-  return(list(values = values, stats = stan_stats, fit = stan_fit))
+  results <- list(data = dat, values = vals, stats = stan_stats, fit = stan_fit)
+  class(results) <- "metabias"
+  return(results)
 
 }
