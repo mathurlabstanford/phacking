@@ -21,5 +21,6 @@ lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 rtma_cdf(lodder_rtma)
 }
 \references{
-Mathur (2022). Sensitivity analysis for p-hacking in meta-analyses. Preprint available at: (FILL IN)
+Mathur (2022). Sensitivity analysis for p-hacking in
+meta-analyses. Preprint available at: (FILL IN)
 }

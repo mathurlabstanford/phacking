@@ -10,7 +10,11 @@ rtma_qqplot(rtma)
 \item{rtma}{Output of \code{phacking_rtma()}.}
 }
 \description{
-To assess the fit of right-truncated meta-analysis and possible violations of its distributional assumptions, plots the fitted cumulative distribution function (CDF) of the published nonaffirmative estimates versus their empirical CDF. If the points do not adhere fairly closely to a 45-degree line, the right-truncated meta-analysis may not fit adequately.
+To assess the fit of right-truncated meta-analysis and possible violations of
+its distributional assumptions, plots the fitted cumulative distribution
+function (CDF) of the published nonaffirmative estimates versus their
+empirical CDF. If the points do not adhere fairly closely to a 45-degree
+line, the right-truncated meta-analysis may not fit adequately.
 }
 \examples{
 lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
