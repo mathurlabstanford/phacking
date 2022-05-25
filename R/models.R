@@ -33,7 +33,7 @@
 #'                 \code{favor_positive} (as passed to \code{phacking_rtma()}),
 #'                 \code{alpha_select} (as passed to \code{phacking_rtma()}),
 #'                 \code{tcrit} (critical t-value based on \code{alpha_select}),
-#'                 and \code{mle_converged} (logical indicating whether the
+#'                 and \code{optim_converged} (logical indicating whether the
 #'                 optimization to find the posterior mode converged).}
 #'   \item{stats}{A tibble with two rows and the columns \code{param} (mu and tau),
 #'                \code{mode}, \code{median}, \code{mean}, \code{se},
@@ -95,8 +95,8 @@ phacking_rtma <- function(yi,
   tau_maxlp <- stan_extract$tau[index_maxlp]
   mle_fit <- mle_params(mu_maxlp, tau_maxlp, nonaffirm$yi, nonaffirm$sei, tcrit)
   modes <- c(mle_fit@coef[["mu"]], mle_fit@coef[["tau"]])
-  mle_converged <- mle_fit@details$convergence == 0
-  vals$mle_converged <- mle_converged
+  optim_converged <- mle_fit@details$convergence == 0
+  vals$optim_converged <- optim_converged
 
   stan_summary <- rstan::summary(stan_fit)$summary %>%
     as_tibble(rownames = "param")
