@@ -1,9 +1,12 @@
 
-# passing only affirmatives should result in error
-# achieve this by setting an extremely small alpha_select
+# passing only affirmatives should result in an informative error
 data(lodder)
-expect_equal( any(lodder$yi/sqrt(lodder$vi) < -9 ), FALSE )
-res = phacking_rtma(lodder$yi, lodder$vi, alpha_select = 1e-10, parallelize = FALSE )
+lodder$my_affirm = lodder$yi/sqrt(lodder$vi) > qnorm(.975)
+da = lodder %>% filter(my_affirm == TRUE)
+expect_error( phacking_rtma(da$yi, da$vi, parallelize = FALSE ) )
 
-res$values$k
-res$values$k_affirmative
+# passing sei or vi vector whose length doesn't match yi should throw error
+expect_error( phacking_rtma(da$yi, 2, parallelize = FALSE ) )
+
+# passing negative sei should result in error
+expect_equal( phacking_rtma(da$yi, sei = -sqrt(da$vi), parallelize = FALSE ) )

@@ -64,11 +64,15 @@ phacking_rtma <- function(yi,
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
+  if (length(sei) != length(yi)) stop("Length of 'vi' or 'sei' must match that of 'yi'.")
+  if (any(sei<0)) stop("vi or sei should never be negative.")
 
   k <- length(yi)
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
   k_nonaffirm <- sum(!affirm)
+  if (k_nonaffirm == 0) stop("Dataset must contain at least one nonaffirmative study to fit RTMA.")
+
   dat <- tibble(yi = yi, vi = vi, sei = sei, affirm = affirm)
   nonaffirm <- dat %>% filter(!affirm)
   stan_data <- list(y = nonaffirm$yi, sei = nonaffirm$sei, k = k_nonaffirm,
