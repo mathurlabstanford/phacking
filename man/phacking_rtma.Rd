@@ -51,9 +51,12 @@ whether the study result is affirmative).}
 \code{tcrit} (critical t-value based on \code{alpha_select}),
 and \code{mle_converged} (logical indicating whether the
 optimization to find the posterior mode converged).}
-\item{stats}{A tibble two rows and the columns \code{param} (mu and tau),
+\item{stats}{A tibble with two rows and the columns \code{param} (mu and tau),
 \code{mode}, \code{median}, \code{mean}, \code{se},
-\code{ci_lower}, \code{ci_upper}, and \code{r_hat}.}
+\code{ci_lower}, \code{ci_upper}, and \code{r_hat}.
+We recommend reporting the \code{mode} for the point estimate;
+\code{median} and \code{mean} represent posterior medians and means
+respectively.}
 \item{fit}{A \code{stanfit} object (the result of fitting the RTMA model).}
 }
 }
