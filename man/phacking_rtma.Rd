@@ -49,14 +49,14 @@ whether the study result is affirmative).}
 \code{favor_positive} (as passed to \code{phacking_rtma()}),
 \code{alpha_select} (as passed to \code{phacking_rtma()}),
 \code{tcrit} (critical t-value based on \code{alpha_select}),
-and \code{mle_converged} (logical indicating whether the
+and \code{optim_converged} (logical indicating whether the
 optimization to find the posterior mode converged).}
-\item{stats}{A tibble with two rows and the columns \code{param} (mu and tau),
+\item{stats}{A tibble with two rows and the columns \code{param} (mu, tau),
 \code{mode}, \code{median}, \code{mean}, \code{se},
-\code{ci_lower}, \code{ci_upper}, and \code{r_hat}.
-We recommend reporting the \code{mode} for the point estimate;
-\code{median} and \code{mean} represent posterior medians and means
-respectively.}
+\code{ci_lower}, \code{ci_upper}, \code{n_eff}, and
+\code{r_hat}. We recommend reporting the \code{mode} for the
+point estimate; \code{median} and \code{mean} represent
+posterior medians and means respectively.}
 \item{fit}{A \code{stanfit} object (the result of fitting the RTMA model).}
 }
 }

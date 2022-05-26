@@ -20,3 +20,9 @@
 #'   package version 2.21.5. https://mc-stan.org
 #'
 NULL
+
+
+#' @internal
+.str <- function(s) {
+  paste(strwrap(glue(s, .envir = parent.frame())), collapse = "")
+}

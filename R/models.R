@@ -35,12 +35,12 @@
 #'                 \code{tcrit} (critical t-value based on \code{alpha_select}),
 #'                 and \code{optim_converged} (logical indicating whether the
 #'                 optimization to find the posterior mode converged).}
-#'   \item{stats}{A tibble with two rows and the columns \code{param} (mu and tau),
+#'   \item{stats}{A tibble with two rows and the columns \code{param} (mu, tau),
 #'                \code{mode}, \code{median}, \code{mean}, \code{se},
-#'                \code{ci_lower}, \code{ci_upper}, and \code{r_hat}.
-#'                We recommend reporting the \code{mode} for the point estimate;
-#'                \code{median} and \code{mean} represent posterior medians and means
-#'                respectively.}
+#'                \code{ci_lower}, \code{ci_upper}, \code{n_eff}, and
+#'                \code{r_hat}. We recommend reporting the \code{mode} for the
+#'                point estimate; \code{median} and \code{mean} represent
+#'                posterior medians and means respectively.}
 #'   \item{fit}{A \code{stanfit} object (the result of fitting the RTMA model).}
 #' }
 #'
@@ -64,14 +64,16 @@ phacking_rtma <- function(yi,
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
-  if (length(sei) != length(yi)) stop("Length of 'vi' or 'sei' must match that of 'yi'.")
-  if (any(sei<0)) stop("vi or sei should never be negative.")
+  if (length(sei) != length(yi)) stop(.str("Length of 'vi' or 'sei' must match
+                                           that of 'yi'."))
+  if (any(sei < 0)) stop("vi or sei should never be negative.")
 
   k <- length(yi)
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
   k_nonaffirm <- sum(!affirm)
-  if (k_nonaffirm == 0) stop("Dataset must contain at least one nonaffirmative study to fit RTMA.")
+  if (k_nonaffirm == 0) stop(.str("Dataset must contain at least one
+                                  nonaffirmative study to fit RTMA."))
 
   dat <- tibble(yi = yi, vi = vi, sei = sei, affirm = affirm)
   nonaffirm <- dat %>% filter(!affirm)
@@ -108,7 +110,7 @@ phacking_rtma <- function(yi,
   stan_stats <- stan_summary %>%
     filter(.data$param %in% c("mu", "tau")) %>%
     select(.data$param, .data$mean, se = .data$se_mean, ci_lower = .data$`2.5%`,
-           ci_upper = .data$`97.5%`, r_hat = .data$Rhat) %>%
+           ci_upper = .data$`97.5%`, n_eff, r_hat = .data$Rhat) %>%
     mutate(mode = modes, median = medians, .after = .data$param)
 
   results <- list(data = dat, values = vals, stats = stan_stats, fit = stan_fit)
