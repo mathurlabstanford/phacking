@@ -10,8 +10,10 @@
 #' meta-analyses. Preprint available at: (FILL IN)
 #'
 #' @examples
+#' \dontrun{
 #' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 #' rtma_cdf(lodder_rtma)
+#' }
 rtma_cdf <- function(rtma) {
   mu <- rtma$stats %>% filter(.data$param == "mu") %>% pull(.data$median)
   tau <- rtma$stats %>% filter(.data$param == "tau") %>% pull(.data$median)
@@ -41,8 +43,10 @@ rtma_cdf <- function(rtma) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 #' rtma_qqplot(lodder_rtma)
+#' }
 rtma_qqplot <- function(rtma) {
   cdf <- rtma_cdf(rtma)
   ggplot(cdf, aes(x = .data$cdfi, y = .data$ecdfi)) +

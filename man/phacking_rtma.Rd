@@ -68,7 +68,9 @@ selective publication of studies with significant, positive results) in
 meta-analyses.
 }
 \examples{
+\dontrun{
 phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+}
 }
 \references{
 Mathur (2022). Sensitivity analysis for p-hacking in

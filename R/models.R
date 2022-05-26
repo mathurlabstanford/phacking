@@ -49,7 +49,9 @@
 #' @references Mathur (2022). Sensitivity analysis for p-hacking in
 #' meta-analyses. Preprint available at: (FILL IN)
 #' @examples
+#' \dontrun{
 #' phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' }
 phacking_rtma <- function(yi,
                           vi,
                           sei,
@@ -64,21 +66,23 @@ phacking_rtma <- function(yi,
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
-  if (length(sei) != length(yi)) stop(.str("Length of 'vi' or 'sei' must match
-                                           that of 'yi'."))
+  if (length(sei) != length(yi)) stop(
+    "Length of 'vi' or 'sei' must match that of 'yi'."
+  )
   if (any(sei < 0)) stop("vi or sei should never be negative.")
 
   k <- length(yi)
   tcrit <- qnorm(1 - alpha_select / 2)
   affirm <- (yi / sei) > tcrit
   k_nonaffirm <- sum(!affirm)
-  if (k_nonaffirm == 0) stop(.str("Dataset must contain at least one
-                                  nonaffirmative study to fit RTMA."))
+  if (k_nonaffirm == 0) stop(
+    "Dataset must contain at least one nonaffirmative study to fit RTMA."
+  )
 
   dat <- tibble(yi = yi, vi = vi, sei = sei, affirm = affirm)
   nonaffirm <- dat %>% filter(!affirm)
-  stan_data <- list(y = nonaffirm$yi, sei = nonaffirm$sei, k = k_nonaffirm,
-                    tcrit = rep(tcrit, k_nonaffirm))
+  stan_data <- list(y = array(nonaffirm$yi), sei = array(nonaffirm$sei),
+                    k = k_nonaffirm, tcrit = array(rep(tcrit, k_nonaffirm)))
 
   vals <- list(k = k,
                k_affirmative = k - k_nonaffirm,
@@ -110,7 +114,7 @@ phacking_rtma <- function(yi,
   stan_stats <- stan_summary %>%
     filter(.data$param %in% c("mu", "tau")) %>%
     select(.data$param, .data$mean, se = .data$se_mean, ci_lower = .data$`2.5%`,
-           ci_upper = .data$`97.5%`, n_eff, r_hat = .data$Rhat) %>%
+           ci_upper = .data$`97.5%`, .data$n_eff, r_hat = .data$Rhat) %>%
     mutate(mode = modes, median = medians, .after = .data$param)
 
   results <- list(data = dat, values = vals, stats = stan_stats, fit = stan_fit)

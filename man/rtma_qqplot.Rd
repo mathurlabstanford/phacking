@@ -17,6 +17,8 @@ empirical CDF. If the points do not adhere fairly closely to a 45-degree
 line, the right-truncated meta-analysis may not fit adequately.
 }
 \examples{
+\dontrun{
 lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 rtma_qqplot(lodder_rtma)
+}
 }

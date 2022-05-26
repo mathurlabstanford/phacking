@@ -17,8 +17,10 @@ A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
 Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 }
 \examples{
+\dontrun{
 lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 rtma_cdf(lodder_rtma)
+}
 }
 \references{
 Mathur (2022). Sensitivity analysis for p-hacking in

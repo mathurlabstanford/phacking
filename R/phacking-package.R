@@ -22,7 +22,10 @@
 NULL
 
 
-#' @internal
-.str <- function(s) {
-  paste(strwrap(glue(s, .envir = parent.frame())), collapse = "")
-}
+#' @keywords internal
+# .str <- function(s) {
+#   paste(strwrap(glue(s, .envir = parent.frame())), collapse = "")
+# }
+
+#' @keywords internal
+lodder_sub <- function() phacking::lodder[1:50,]
