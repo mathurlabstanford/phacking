@@ -6,8 +6,8 @@
 #'   (their fitted CDF) and \code{ecdfi} (their empirical CDF).
 #' @export
 #'
-#' @references Mathur (2022). Sensitivity analysis for p-hacking in
-#' meta-analyses. Preprint available at: (FILL IN)
+#' @references
+#' \insertRef{mathur2022}{phacking}
 #'
 #' @examples
 #' \dontrun{

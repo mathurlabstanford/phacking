@@ -2,7 +2,7 @@
 #'
 #' Dataset from a meta-analysis of experimental studies on the effect of money
 #' primes on a variety of psychological and behavioral outcomes, in which some
-#' studies were preregistered (Lodder et al., 2019).
+#' studies were preregistered \insertCite{lodder2019}{phacking}.
 #'
 #' @format A data frame with 287 rows and 4 variables:
 #' \describe{
@@ -13,8 +13,8 @@
 #'   \item{preregistered}{Logical indicating whether study was preregistered}
 #' }
 #'
-#' @source Lodder, Ong, & Grasman (2019). A comprehensive meta-analysis of money
-#' priming. \emph{Journal of Experimental Psychology: General}, 148(4):688-712.
-#' Dataset available from \url{https://osf.io/8xjct/} and reused with
-#' permission.
+#' @references
+#' \insertRef{lodder2019}{phacking}
+#'
+#' \insertRef{lodder2020}{phacking}
 "lodder"

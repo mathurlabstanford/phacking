@@ -2,13 +2,34 @@
 % Please edit documentation in R/phacking-package.R
 \docType{package}
 \name{phacking-package}
-\alias{phacking-package}
 \alias{phacking}
-\title{The 'phacking' package.}
+\alias{phacking-package}
+\title{phacking: Sensitivity analysis for p-hacking in meta-analyses}
 \description{
-Methods for meta-analysis corrected for phacking.
+Fits right-truncated meta-analysis (RTMA), a bias correction for the joint effects of p-hacking (i.e., manipulation of results within studies to obtain significant, positive estimates) and traditional publication bias (i.e., the selective publication of studies with significant, positive results) in meta-analyses (see \insertRef{mathur2022}{phacking}). Unlike publication bias alone, p-hacking that favors significant, positive results (termed "affirmative") can distort the distribution of affirmative results. To bias-correct results from affirmative studies would require strong assumptions on the exact nature of p-hacking. In contrast, joint p-hacking and publication bias do not distort the distribution of published nonaffirmative results when there is stringent p-hacking (e.g., investigators who hack always eventually obtain an affirmative result) or when there is stringent publication bias (e.g., nonaffirmative results from hacked studies are never published). This means that any published nonaffirmative results are from unhacked studies. Under these assumptions, RTMA involves analyzing only the published nonaffirmative results to essentially impute the full underlying distribution of all results prior to selection due to p-hacking and/or publication bias. The package also provides diagnostic plots described in \insertCite{mathur2022;textual}{phacking}.
 }
 \references{
-Stan Development Team (2022). RStan: the R interface to Stan. R
-package version 2.21.5. https://mc-stan.org
+\insertRef{mathur2022}{phacking}
+
+\insertRef{lodder2019}{phacking}
+
+\insertRef{stan2022}{phacking}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/mikabr/phacking}
+  \item Report bugs at \url{https://github.com/mikabr/phacking/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Mika Braginsky \email{mikabr@stanford.edu}
+
+Authors:
+\itemize{
+  \item Maya Mathur \email{mmathur@stanford.edu}
+}
+
+}
+\keyword{internal}

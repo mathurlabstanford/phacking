@@ -23,6 +23,5 @@ rtma_cdf(lodder_rtma)
 }
 }
 \references{
-Mathur (2022). Sensitivity analysis for p-hacking in
-meta-analyses. Preprint available at: (FILL IN)
+\insertRef{mathur2022}{phacking}
 }

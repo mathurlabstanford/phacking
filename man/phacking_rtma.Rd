@@ -73,6 +73,5 @@ phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 }
 }
 \references{
-Mathur (2022). Sensitivity analysis for p-hacking in
-meta-analyses. Preprint available at: (FILL IN)
+\insertRef{mathur2022}{phacking}
 }

@@ -1,31 +1,25 @@
-#' The 'phacking' package.
+#' @keywords internal
+#' @references
+#' \insertRef{mathur2022}{phacking}
 #'
-#' @description Methods for meta-analysis corrected for phacking.
+#' \insertRef{lodder2019}{phacking}
 #'
-#' @docType package
-#' @name phacking-package
-#' @aliases phacking
+#' \insertRef{stan2022}{phacking}
+"_PACKAGE"
+
+## usethis namespace: start
 #' @useDynLib phacking, .registration = TRUE
 #' @import methods
 #' @import Rcpp
+#' @import ggplot2
 #' @importFrom rstan sampling
-#'
 #' @importFrom stats dnorm ecdf median pnorm qnorm
 #' @importFrom dplyr %>% as_tibble filter if_else mutate pull rowwise select
 #'   tibble
-#' @import ggplot2
 #' @importFrom rlang .data
-#'
-#' @references Stan Development Team (2022). RStan: the R interface to Stan. R
-#'   package version 2.21.5. https://mc-stan.org
-#'
+#' @importFrom Rdpack reprompt
+## usethis namespace: end
 NULL
-
-
-#' @keywords internal
-# .str <- function(s) {
-#   paste(strwrap(glue(s, .envir = parent.frame())), collapse = "")
-# }
 
 #' @keywords internal
 lodder_sub <- function() phacking::lodder[1:50,]
