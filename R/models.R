@@ -62,6 +62,7 @@ phacking_rtma <- function(yi,
                                               max_treedepth = 20),
                           parallelize = TRUE) {
 
+  set.seed(22)
   if (!favor_positive) yi <- -yi
 
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
