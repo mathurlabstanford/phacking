@@ -78,6 +78,16 @@
       "Hash": "f3e94e34ff656a7c8336ce01207bc2b8",
       "Requirements": []
     },
+    "Rdpack": {
+      "Package": "Rdpack",
+      "Version": "2.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "6cc7e06de6297f7021e7ed2dee56e742",
+      "Requirements": [
+        "rbibutils"
+      ]
+    },
     "StanHeaders": {
       "Package": "StanHeaders",
       "Version": "2.21.0-7",
@@ -88,14 +98,6 @@
         "RcppEigen",
         "RcppParallel"
       ]
-    },
-    "assertthat": {
-      "Package": "assertthat",
-      "Version": "0.2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "50c838a310445e954bc13f26f26a6ecf",
-      "Requirements": []
     },
     "backports": {
       "Package": "backports",
@@ -509,6 +511,14 @@
         "magrittr",
         "rlang"
       ]
+    },
+    "rbibutils": {
+      "Package": "rbibutils",
+      "Version": "2.2.8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "60eae09898124cffcab51e5ee082a89f",
+      "Requirements": []
     },
     "rematch2": {
       "Package": "rematch2",
