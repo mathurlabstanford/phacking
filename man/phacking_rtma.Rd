@@ -69,7 +69,7 @@ meta-analyses.
 }
 \examples{
 \dontrun{
-phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+phacking_rtma(lodder$yi, lodder$vi)
 }
 }
 \references{

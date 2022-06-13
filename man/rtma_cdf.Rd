@@ -18,7 +18,7 @@ Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 }
 \examples{
 \dontrun{
-lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
 rtma_cdf(lodder_rtma)
 }
 }

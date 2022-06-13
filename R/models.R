@@ -51,7 +51,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' phacking_rtma(lodder$yi, lodder$vi)
 #' }
 phacking_rtma <- function(yi,
                           vi,

@@ -22,4 +22,4 @@
 NULL
 
 #' @keywords internal
-lodder_sub <- function() phacking::lodder[1:50,]
+lodder_sub <- function() phacking::lodder[1:50, ]

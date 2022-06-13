@@ -18,7 +18,7 @@ line, the right-truncated meta-analysis may not fit adequately.
 }
 \examples{
 \dontrun{
-lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
 rtma_qqplot(lodder_rtma)
 }
 }

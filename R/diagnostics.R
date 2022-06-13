@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
 #' rtma_cdf(lodder_rtma)
 #' }
 rtma_cdf <- function(rtma) {
@@ -20,9 +20,6 @@ rtma_cdf <- function(rtma) {
   tcrit <- rtma$values$tcrit
   ptrunc <- truncnorm::ptruncnorm
 
-  # tibble(yi = rtma$values$yi,
-  #        sei = rtma$values$sei,
-  #        affirm = rtma$values$affirm) %>%
   rtma$data %>%
     filter(!.data$affirm) %>%
     mutate(ecdfi = ecdf(.data$yi)(.data$yi),
@@ -44,7 +41,7 @@ rtma_cdf <- function(rtma) {
 #'
 #' @examples
 #' \dontrun{
-#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
 #' rtma_qqplot(lodder_rtma)
 #' }
 rtma_qqplot <- function(rtma) {
@@ -70,15 +67,8 @@ rtma_qqplot <- function(rtma) {
 #' \emph{below} the critical value, or if they also concentrate below the
 #' sign-reversed critical value (e.g., -1.96), this could indicate forms of
 #' p-hacking that violate the assumptions of RTMA.
-#' @param yi A vector of point estimates to be meta-analyzed.
-#' @param vi A vector of estimated variances (i.e., squared standard errors) for
-#'   the point estimates.
-#' @param sei A vector of estimated standard errors for the point estimates.
-#'   (Only one of \code{vi} or \code{sei} needs to be specified).
-#' @param alpha_select Alpha level at which an estimate's probability of being
-#'   favored by p-hacking and/or by publication bias is assumed to change (i.e.,
-#'   the threshold at which study investigators, journal editors, etc., consider
-#'   an estimate to be significant).
+#'
+#' @inheritParams phacking_rtma
 #' @param crit_color Color for line and text are critical z-score.
 #'
 #' @export
