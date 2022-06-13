@@ -85,7 +85,7 @@ rtma_qqplot <- function(rtma) {
 #'
 #' @examples
 #' z_density(lodder$yi, lodder$vi)
-z_density <- function(yi, sei, vi, alpha_select = 0.05, crit_color = "red") {
+z_density <- function(yi, vi, sei, alpha_select = 0.05, crit_color = "red") {
 
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
