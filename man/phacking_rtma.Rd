@@ -68,8 +68,9 @@ selective publication of studies with significant, positive results) in
 meta-analyses.
 }
 \examples{
-\dontrun{
-phacking_rtma(lodder$yi, lodder$vi)
+\donttest{
+set.seed(22)
+phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 }
 }
 \references{

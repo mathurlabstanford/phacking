@@ -10,8 +10,9 @@
 #' \insertRef{mathur2022}{phacking}
 #'
 #' @examples
-#' \dontrun{
-#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
+#' \donttest{
+#' set.seed(22)
+#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 #' rtma_cdf(lodder_rtma)
 #' }
 rtma_cdf <- function(rtma) {
@@ -36,12 +37,14 @@ rtma_cdf <- function(rtma) {
 #' empirical CDF. If the points do not adhere fairly closely to a 45-degree
 #' line, the right-truncated meta-analysis may not fit adequately.
 #' @param rtma Output of \code{phacking_rtma()}.
+#' @return No return value, draws a plot.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
+#' \donttest{
+#' set.seed(22)
+#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 #' rtma_qqplot(lodder_rtma)
 #' }
 rtma_qqplot <- function(rtma) {
@@ -70,6 +73,7 @@ rtma_qqplot <- function(rtma) {
 #'
 #' @inheritParams phacking_rtma
 #' @param crit_color Color for line and text are critical z-score.
+#' @return No return value, draws a plot.
 #'
 #' @export
 #'

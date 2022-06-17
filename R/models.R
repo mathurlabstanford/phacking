@@ -50,8 +50,9 @@
 #' \insertRef{mathur2022}{phacking}
 #'
 #' @examples
-#' \dontrun{
-#' phacking_rtma(lodder$yi, lodder$vi)
+#' \donttest{
+#' set.seed(22)
+#' phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 #' }
 phacking_rtma <- function(yi,
                           vi,
@@ -62,7 +63,6 @@ phacking_rtma <- function(yi,
                                               max_treedepth = 20),
                           parallelize = TRUE) {
 
-  set.seed(22)
   if (!favor_positive) yi <- -yi
 
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")

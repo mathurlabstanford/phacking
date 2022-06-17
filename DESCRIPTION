@@ -9,8 +9,8 @@ Description: Fits right-truncated meta-analysis (RTMA), a bias correction for
   to obtain significant, positive estimates) and traditional publication bias
   (i.e., the selective publication of studies with significant, positive
   results) in meta-analyses [see Mathur MB (2022). "Sensitivity analysis for
-  p-hacking in meta-analyses." <doi:10.31219/osf.io/ezjsx>.]. Unlike publication bias
-  alone, p-hacking that favors significant, positive results (termed
+  p-hacking in meta-analyses." <doi:10.31219/osf.io/ezjsx>.]. Unlike publication
+  bias alone, p-hacking that favors significant, positive results (termed
   "affirmative") can distort the distribution of affirmative results. To
   bias-correct results from affirmative studies would require strong assumptions
   on the exact nature of p-hacking. In contrast, joint p-hacking and publication

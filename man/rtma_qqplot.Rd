@@ -9,6 +9,9 @@ rtma_qqplot(rtma)
 \arguments{
 \item{rtma}{Output of \code{phacking_rtma()}.}
 }
+\value{
+No return value, draws a plot.
+}
 \description{
 To assess the fit of right-truncated meta-analysis and possible violations of
 its distributional assumptions, plots the fitted cumulative distribution
@@ -17,8 +20,9 @@ empirical CDF. If the points do not adhere fairly closely to a 45-degree
 line, the right-truncated meta-analysis may not fit adequately.
 }
 \examples{
-\dontrun{
-lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi)
+\donttest{
+set.seed(22)
+lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
 rtma_qqplot(lodder_rtma)
 }
 }
