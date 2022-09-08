@@ -19,8 +19,9 @@ Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 \examples{
 \donttest{
 set.seed(22)
-lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
-rtma_cdf(lodder_rtma)
+money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+                                    parallelize = FALSE)
+rtma_cdf(money_priming_rtma)
 }
 }
 \references{

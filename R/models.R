@@ -52,7 +52,7 @@
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
+#' phacking_rtma(money_priming_meta$yi, money_priming_meta$vi, parallelize = FALSE)
 #' }
 phacking_rtma <- function(yi,
                           vi,

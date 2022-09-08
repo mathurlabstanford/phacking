@@ -22,7 +22,8 @@ line, the right-truncated meta-analysis may not fit adequately.
 \examples{
 \donttest{
 set.seed(22)
-lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
-rtma_qqplot(lodder_rtma)
+money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+                                    parallelize = FALSE)
+rtma_qqplot(money_priming_rtma)
 }
 }

@@ -38,5 +38,5 @@ sign-reversed critical value (e.g., -1.96), this could indicate forms of
 p-hacking that violate the assumptions of RTMA.
 }
 \examples{
-z_density(lodder$yi, lodder$vi)
+z_density(money_priming_meta$yi, money_priming_meta$vi)
 }

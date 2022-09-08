@@ -12,8 +12,9 @@
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
-#' rtma_cdf(lodder_rtma)
+#' money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+#'                                     parallelize = FALSE)
+#' rtma_cdf(money_priming_rtma)
 #' }
 rtma_cdf <- function(rtma) {
   mu <- rtma$stats %>% filter(.data$param == "mu") %>% pull(.data$median)
@@ -44,8 +45,9 @@ rtma_cdf <- function(rtma) {
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' lodder_rtma <- phacking_rtma(lodder$yi, lodder$vi, parallelize = FALSE)
-#' rtma_qqplot(lodder_rtma)
+#' money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+#'                                     parallelize = FALSE)
+#' rtma_qqplot(money_priming_rtma)
 #' }
 rtma_qqplot <- function(rtma) {
   cdf <- rtma_cdf(rtma)
@@ -78,7 +80,7 @@ rtma_qqplot <- function(rtma) {
 #' @export
 #'
 #' @examples
-#' z_density(lodder$yi, lodder$vi)
+#' z_density(money_priming_meta$yi, money_priming_meta$vi)
 z_density <- function(yi, vi, sei, alpha_select = 0.05, crit_color = "red") {
 
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")

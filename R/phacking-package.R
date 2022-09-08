@@ -22,4 +22,4 @@
 NULL
 
 #' @keywords internal
-lodder_sub <- function() phacking::lodder[1:50, ]
+money_priming_sub <- function() phacking::money_priming_meta[1:50, ]
