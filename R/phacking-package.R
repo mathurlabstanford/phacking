@@ -13,7 +13,7 @@
 #' @import Rcpp
 #' @import ggplot2
 #' @importFrom rstan sampling
-#' @importFrom stats dnorm ecdf median pnorm qnorm
+#' @importFrom stats dnorm ecdf median pnorm qnorm quantile
 #' @importFrom dplyr %>% as_tibble filter if_else mutate pull rowwise select
 #'   tibble
 #' @importFrom rlang .data

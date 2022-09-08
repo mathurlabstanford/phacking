@@ -18,6 +18,9 @@
 #'   favored by p-hacking and/or by publication bias is assumed to change (i.e.,
 #'   the threshold at which study investigators, journal editors, etc., consider
 #'   an estimate to be significant).
+#' @param ci_level Confidence interval level (as proportion) for the corrected
+#'   point estimate. (The alpha level for inference on the corrected point
+#'   estimate will be calculated from \code{ci_level}.)
 #' @param stan_control List passed to \code{rstan::sampling()} as the
 #'   \code{control} argument.
 #' @param parallelize Logical indicating whether to parallelize sampling.
@@ -59,6 +62,7 @@ phacking_rtma <- function(yi,
                           sei,
                           favor_positive = TRUE,
                           alpha_select = 0.05,
+                          ci_level = 0.95,
                           stan_control = list(adapt_delta = 0.98,
                                               max_treedepth = 20),
                           parallelize = TRUE) {
@@ -113,11 +117,17 @@ phacking_rtma <- function(yi,
   stan_summary <- rstan::summary(stan_fit)$summary %>%
     as_tibble(rownames = "param")
 
+  stan_ci <- function(param, q) as.numeric(quantile(stan_extract[[param]], q))
+  alpha <- 1 - ci_level
+  cil <- c(stan_ci("mu", alpha / 2), stan_ci("tau", alpha / 2))
+  ciu <- c(stan_ci("mu", 1 - alpha / 2), stan_ci("tau", 1 - alpha / 2))
+
   stan_stats <- stan_summary %>%
     filter(.data$param %in% c("mu", "tau")) %>%
-    select(.data$param, .data$mean, se = .data$se_mean, ci_lower = .data$`2.5%`,
-           ci_upper = .data$`97.5%`, .data$n_eff, r_hat = .data$Rhat) %>%
-    mutate(mode = modes, median = medians, .after = .data$param)
+    select(.data$param, .data$mean, se = .data$se_mean,
+           .data$n_eff, r_hat = .data$Rhat) %>%
+    mutate(mode = modes, median = medians, .after = .data$param) %>%
+    mutate(ci_lower = cil, ci_upper = ciu, .after = .data$se)
 
   results <- list(data = dat, values = vals, stats = stan_stats, fit = stan_fit)
   class(results) <- "metabias"

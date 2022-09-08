@@ -10,6 +10,7 @@ phacking_rtma(
   sei,
   favor_positive = TRUE,
   alpha_select = 0.05,
+  ci_level = 0.95,
   stan_control = list(adapt_delta = 0.98, max_treedepth = 20),
   parallelize = TRUE
 )
@@ -31,6 +32,10 @@ favor significant negative estimates.}
 favored by p-hacking and/or by publication bias is assumed to change (i.e.,
 the threshold at which study investigators, journal editors, etc., consider
 an estimate to be significant).}
+
+\item{ci_level}{Confidence interval level (as proportion) for the corrected
+point estimate. (The alpha level for inference on the corrected point
+estimate will be calculated from \code{ci_level}.)}
 
 \item{stan_control}{List passed to \code{rstan::sampling()} as the
 \code{control} argument.}
