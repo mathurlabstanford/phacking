@@ -68,8 +68,6 @@ phacking_rtma <- function(yi, # data
                                               max_treedepth = 20),
                           parallelize = TRUE) {
 
-  if (!favor_positive) yi <- -yi
-
   if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
@@ -77,6 +75,14 @@ phacking_rtma <- function(yi, # data
     "Length of 'vi' or 'sei' must match that of 'yi'."
   )
   if (any(sei < 0)) stop("vi or sei should never be negative.")
+
+  # warn if naive estimate is in opposite direction than favor_positive
+  naive_pos <- metafor::rma(yi, vi, method = "FE")$beta > 0
+  if (naive_pos != favor_positive)
+    warning("Favored direction is opposite of the pooled estimate.")
+
+  # flip direction of yi if needed
+  if (!favor_positive) yi <- -yi
 
   k <- length(yi)
   tcrit <- qnorm(1 - alpha_select / 2)
