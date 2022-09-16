@@ -57,10 +57,11 @@
 #' set.seed(22)
 #' phacking_rtma(money_priming_meta$yi, money_priming_meta$vi, parallelize = FALSE)
 #' }
-phacking_rtma <- function(yi,
+phacking_rtma <- function(yi, # data
                           vi,
                           sei,
-                          favor_positive = TRUE,
+
+                          favor_positive = TRUE, # opts
                           alpha_select = 0.05,
                           ci_level = 0.95,
                           stan_control = list(adapt_delta = 0.98,
