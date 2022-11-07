@@ -7,7 +7,7 @@
 #' @format A data frame with 287 rows and 4 variables:
 #' \describe{
 #'   \item{study}{Code identifying the study}
-#'   \item{yi}{Point estimate on the Hedges' \emph{g} scale}
+#'   \item{yi}{Point estimate on the Hedges' *g* scale}
 #'   \item{vi}{Variance of point estimate}
 #'   \item{zi}{Z-score}
 #'   \item{preregistered}{Logical indicating whether study was preregistered}

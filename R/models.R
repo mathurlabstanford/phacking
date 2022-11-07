@@ -7,30 +7,30 @@
 #' meta-analyses.
 #'
 #' @inheritParams metabias::params
-#' @param stan_control List passed to \code{rstan::sampling()} as the
-#'   \code{control} argument.
+#' @param stan_control List passed to `rstan::sampling()` as the
+#'   `control` argument.
 #' @param parallelize Logical indicating whether to parallelize sampling.
 #'
-#' @return An object of class \code{metabias}, which is list with four elements:
+#' @return An object of class `metabias`, which is list with four elements:
 #' \describe{
-#'   \item{data}{A tibble with one row per study and the columns \code{yi},
-#'               \code{vi}, \code{sei}, and \code{affirm} (logical indicating
+#'   \item{data}{A tibble with one row per study and the columns `yi`,
+#'               `vi`, `sei`, and `affirm` (logical indicating
 #'               whether the study result is affirmative).}
-#'   \item{values}{A vector with the elements \code{k} (number of studies),
-#'                 \code{k_affirmative} (number of affirmative studies),
-#'                 \code{k_nonaffirmative} (number of nonaffirmative studies),
-#'                 \code{favor_positive} (as passed to \code{phacking_meta()}),
-#'                 \code{alpha_select} (as passed to \code{phacking_meta()}),
-#'                 \code{tcrit} (critical t-value based on \code{alpha_select}),
-#'                 and \code{optim_converged} (logical indicating whether the
+#'   \item{values}{A vector with the elements `k` (number of studies),
+#'                 `k_affirmative` (number of affirmative studies),
+#'                 `k_nonaffirmative` (number of nonaffirmative studies),
+#'                 `favor_positive` (as passed to `phacking_meta()`),
+#'                 `alpha_select` (as passed to `phacking_meta()`),
+#'                 `tcrit` (critical t-value based on `alpha_select`),
+#'                 and `optim_converged` (logical indicating whether the
 #'                 optimization to find the posterior mode converged).}
-#'   \item{stats}{A tibble with two rows and the columns \code{param} (mu, tau),
-#'                \code{mode}, \code{median}, \code{mean}, \code{se},
-#'                \code{ci_lower}, \code{ci_upper}, \code{n_eff}, and
-#'                \code{r_hat}. We recommend reporting the \code{mode} for the
-#'                point estimate; \code{median} and \code{mean} represent
+#'   \item{stats}{A tibble with two rows and the columns `param` (mu, tau),
+#'                `mode`, `median`, `mean`, `se`,
+#'                `ci_lower`, `ci_upper`, `n_eff`, and
+#'                `r_hat`. We recommend reporting the `mode` for the
+#'                point estimate; `median` and `mean` represent
 #'                posterior medians and means respectively.}
-#'   \item{fit}{A \code{stanfit} object (the result of fitting the RTMA model).}
+#'   \item{fit}{A `stanfit` object (the result of fitting the RTMA model).}
 #' }
 #'
 #' @export

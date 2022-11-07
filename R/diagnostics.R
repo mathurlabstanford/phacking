@@ -1,9 +1,9 @@
 #' Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 #'
-#' @param rtma Output of \code{phacking_meta()}.
+#' @param rtma Output of `phacking_meta()`.
 #'
-#' @return A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
-#'   (their fitted CDF) and \code{ecdfi} (their empirical CDF).
+#' @return A tibble with the columns `yi` (effect sizes), `cdfi`
+#'   (their fitted CDF) and `ecdfi` (their empirical CDF).
 #' @export
 #'
 #' @references
@@ -67,10 +67,10 @@ rtma_qqplot <- function(rtma) {
 #' affirmative estimates over nonaffirmative estimates, as our methods and
 #' others assume, Z-scores may disproportionately concentrate just above the
 #' critical value (e.g., 1.96). Importantly, the presence of p-hacking does not
-#' \emph{guarantee} a concentration of Z-scores just above the critical value,
+#' *guarantee* a concentration of Z-scores just above the critical value,
 #' so it is prudent to proceed with the fitting RTMA even if no such
 #' concentration is apparent. In contrast, if Z-scores also concentrate just
-#' \emph{below} the critical value, or if they also concentrate below the
+#' *below* the critical value, or if they also concentrate below the
 #' sign-reversed critical value (e.g., -1.96), this could indicate forms of
 #' p-hacking that violate the assumptions of RTMA.
 #'
