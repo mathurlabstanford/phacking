@@ -1,7 +1,7 @@
 test_that("stan respects changes to control parameters", {
   mpm <- money_priming_sub()
 
-  res <- phacking_rtma(mpm$yi, mpm$vi, alpha_select = 1e-10,
+  res <- phacking_meta(mpm$yi, mpm$vi, alpha_select = 1e-10,
                        parallelize = FALSE,
                        stan_control = list(adapt_delta = 0.7,
                                            max_treedepth = 10))
@@ -16,7 +16,7 @@ test_that("study counts are right even with a strange alpha_select", {
   alpha <- 1e-10
   z_alpha <- qnorm(1 - alpha / 2)
   mpm <- mpm %>% mutate(affirm = yi / sqrt(vi) > z_alpha)
-  res <- phacking_rtma(mpm$yi, mpm$vi, alpha_select = alpha,
+  res <- phacking_meta(mpm$yi, mpm$vi, alpha_select = alpha,
                        parallelize = FALSE)
 
   expect_equal(nrow(mpm), res$values$k)
@@ -27,6 +27,6 @@ test_that("study counts are right even with a strange alpha_select", {
 
 test_that("one nonaffirmative runs", {
   # try passing only 1 nonaffirmative; should still run but have warnings
-  w <- capture_warnings(phacking_rtma(yi = 0.2, sei = 0.2, parallelize = FALSE))
+  w <- capture_warnings(phacking_meta(yi = 0.2, sei = 0.2, parallelize = FALSE))
   expect_gt(length(w), 0)
 })

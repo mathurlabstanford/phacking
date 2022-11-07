@@ -1,6 +1,6 @@
 #' Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 #'
-#' @param rtma Output of \code{phacking_rtma()}.
+#' @param rtma Output of \code{phacking_meta()}.
 #'
 #' @return A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
 #'   (their fitted CDF) and \code{ecdfi} (their empirical CDF).
@@ -12,7 +12,7 @@
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+#' money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
 #'                                     parallelize = FALSE)
 #' rtma_cdf(money_priming_rtma)
 #' }
@@ -37,7 +37,8 @@ rtma_cdf <- function(rtma) {
 #' function (CDF) of the published nonaffirmative estimates versus their
 #' empirical CDF. If the points do not adhere fairly closely to a 45-degree
 #' line, the right-truncated meta-analysis may not fit adequately.
-#' @param rtma Output of \code{phacking_rtma()}.
+#'
+#' @inheritParams rtma_cdf
 #' @return No return value, draws a plot.
 #'
 #' @export
@@ -45,7 +46,7 @@ rtma_cdf <- function(rtma) {
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+#' money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
 #'                                     parallelize = FALSE)
 #' rtma_qqplot(money_priming_rtma)
 #' }
@@ -73,7 +74,7 @@ rtma_qqplot <- function(rtma) {
 #' sign-reversed critical value (e.g., -1.96), this could indicate forms of
 #' p-hacking that violate the assumptions of RTMA.
 #'
-#' @inheritParams phacking_rtma
+#' @inheritParams phacking_meta
 #' @param crit_color Color for line and text are critical z-score.
 #' @return No return value, draws a plot.
 #'

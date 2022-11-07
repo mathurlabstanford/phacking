@@ -7,7 +7,7 @@
 rtma_qqplot(rtma)
 }
 \arguments{
-\item{rtma}{Output of \code{phacking_rtma()}.}
+\item{rtma}{Output of \code{phacking_meta()}.}
 }
 \value{
 No return value, draws a plot.
@@ -22,7 +22,7 @@ line, the right-truncated meta-analysis may not fit adequately.
 \examples{
 \donttest{
 set.seed(22)
-money_priming_rtma <- phacking_rtma(money_priming_meta$yi, money_priming_meta$vi,
+money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
                                     parallelize = FALSE)
 rtma_qqplot(money_priming_rtma)
 }

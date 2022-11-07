@@ -6,21 +6,7 @@
 #' selective publication of studies with significant, positive results) in
 #' meta-analyses.
 #'
-#' @param yi A vector of point estimates to be meta-analyzed.
-#' @param vi A vector of estimated variances (i.e., squared standard errors) for
-#'   the point estimates.
-#' @param sei A vector of estimated standard errors for the point estimates.
-#'   (Only one of \code{vi} or \code{sei} needs to be specified).
-#' @param favor_positive \code{TRUE} if p-hacking and publication bias are
-#'   assumed to favor significant positive estimates; \code{FALSE} if assumed to
-#'   favor significant negative estimates.
-#' @param alpha_select Alpha level at which an estimate's probability of being
-#'   favored by p-hacking and/or by publication bias is assumed to change (i.e.,
-#'   the threshold at which study investigators, journal editors, etc., consider
-#'   an estimate to be significant).
-#' @param ci_level Confidence interval level (as proportion) for the corrected
-#'   point estimate. (The alpha level for inference on the corrected point
-#'   estimate will be calculated from \code{ci_level}.)
+#' @inheritParams metabias::params
 #' @param stan_control List passed to \code{rstan::sampling()} as the
 #'   \code{control} argument.
 #' @param parallelize Logical indicating whether to parallelize sampling.
@@ -33,8 +19,8 @@
 #'   \item{values}{A vector with the elements \code{k} (number of studies),
 #'                 \code{k_affirmative} (number of affirmative studies),
 #'                 \code{k_nonaffirmative} (number of nonaffirmative studies),
-#'                 \code{favor_positive} (as passed to \code{phacking_rtma()}),
-#'                 \code{alpha_select} (as passed to \code{phacking_rtma()}),
+#'                 \code{favor_positive} (as passed to \code{phacking_meta()}),
+#'                 \code{alpha_select} (as passed to \code{phacking_meta()}),
 #'                 \code{tcrit} (critical t-value based on \code{alpha_select}),
 #'                 and \code{optim_converged} (logical indicating whether the
 #'                 optimization to find the posterior mode converged).}
@@ -55,9 +41,9 @@
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' phacking_rtma(money_priming_meta$yi, money_priming_meta$vi, parallelize = FALSE)
+#' phacking_meta(money_priming_meta$yi, money_priming_meta$vi, parallelize = FALSE)
 #' }
-phacking_rtma <- function(yi, # data
+phacking_meta <- function(yi, # data
                           vi,
                           sei,
 

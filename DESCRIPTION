@@ -36,6 +36,8 @@ Depends:
 Imports:
     dplyr,
     ggplot2,
+    metabias,
+    metafor,
     methods,
     purrr,
     rlang,
