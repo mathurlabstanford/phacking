@@ -22,10 +22,10 @@ phacking_meta(
 the point estimates.}
 
 \item{sei}{A vector of estimated standard errors for the point estimates.
-(Only one of `vi` or `sei` needs to be specified).}
+(Only one of \code{vi} or \code{sei} needs to be specified).}
 
-\item{favor_positive}{`TRUE` if publication bias are
-assumed to favor significant positive estimates; `FALSE` if assumed to
+\item{favor_positive}{\code{TRUE} if publication bias are
+assumed to favor significant positive estimates; \code{FALSE} if assumed to
 favor significant negative estimates.}
 
 \item{alpha_select}{Alpha level at which an estimate's probability of being
@@ -35,15 +35,15 @@ an estimate to be significant).}
 
 \item{ci_level}{Confidence interval level (as proportion) for the corrected
 point estimate. (The alpha level for inference on the corrected point
-estimate will be calculated from `ci_level`.)}
+estimate will be calculated from \code{ci_level}.)}
 
-\item{stan_control}{List passed to \code{rstan::sampling()} as the
+\item{stan_control}{List passed to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}} as the
 \code{control} argument.}
 
 \item{parallelize}{Logical indicating whether to parallelize sampling.}
 }
 \value{
-An object of class \code{metabias}, which is list with four elements:
+An object of class \code{\link[metabias:metabias-class]{metabias::metabias()}}, a list containing:
 \describe{
 \item{data}{A tibble with one row per study and the columns \code{yi},
 \code{vi}, \code{sei}, and \code{affirm} (logical indicating
@@ -75,7 +75,8 @@ meta-analyses.
 \examples{
 \donttest{
 set.seed(22)
-phacking_meta(money_priming_meta$yi, money_priming_meta$vi, parallelize = FALSE)
+phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
+              parallelize = FALSE)
 }
 }
 \references{

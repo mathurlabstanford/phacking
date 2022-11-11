@@ -12,7 +12,7 @@ get_lprior <- function(mu, tau, sei, tcrit) {
     matrix(c(-kmm, -kms, -kms, -kss), nrow = 2, ncol = 2)
   }
 
-  e_fisher <- purrr::map(sei, e_fisher_i) %>% purrr::reduce(`+`)
+  e_fisher <- purrr::map(sei, e_fisher_i) |> purrr::reduce(`+`)
   log(sqrt(det(e_fisher)))
 }
 

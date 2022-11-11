@@ -9,15 +9,14 @@
 
 ## usethis namespace: start
 #' @useDynLib phacking, .registration = TRUE
+#' @import ggplot2
 #' @import methods
 #' @import Rcpp
-#' @import ggplot2
+#' @importFrom dplyr as_tibble filter if_else mutate pull rowwise select tibble
+#' @importFrom Rdpack reprompt
+#' @importFrom rlang .data
 #' @importFrom rstan sampling
 #' @importFrom stats dnorm ecdf median pnorm qnorm quantile
-#' @importFrom dplyr %>% as_tibble filter if_else mutate pull rowwise select
-#'   tibble
-#' @importFrom rlang .data
-#' @importFrom Rdpack reprompt
 ## usethis namespace: end
 NULL
 

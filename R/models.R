@@ -7,11 +7,11 @@
 #' meta-analyses.
 #'
 #' @inheritParams metabias::params
-#' @param stan_control List passed to `rstan::sampling()` as the
+#' @param stan_control List passed to [rstan::sampling()] as the
 #'   `control` argument.
 #' @param parallelize Logical indicating whether to parallelize sampling.
 #'
-#' @return An object of class `metabias`, which is list with four elements:
+#' @return An object of class [metabias::metabias()], a list containing:
 #' \describe{
 #'   \item{data}{A tibble with one row per study and the columns `yi`,
 #'               `vi`, `sei`, and `affirm` (logical indicating
@@ -38,10 +38,11 @@
 #' @references
 #' \insertRef{mathur2022}{phacking}
 #'
-#' @examples
+#' @example inst/examples/test-meta.R
 #' \donttest{
 #' set.seed(22)
-#' phacking_meta(money_priming_meta$yi, money_priming_meta$vi, parallelize = FALSE)
+#' phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
+#'               parallelize = FALSE)
 #' }
 phacking_meta <- function(yi, # data
                           vi,
@@ -54,7 +55,7 @@ phacking_meta <- function(yi, # data
                                               max_treedepth = 20),
                           parallelize = TRUE) {
 
-  if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
+  if (missing(vi) && missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
   if (length(sei) != length(yi)) stop(
@@ -79,7 +80,7 @@ phacking_meta <- function(yi, # data
   )
 
   dat <- tibble(yi = yi, vi = vi, sei = sei, affirm = affirm)
-  nonaffirm <- dat %>% filter(!affirm)
+  nonaffirm <- dat |> filter(!affirm)
   stan_data <- list(y = array(nonaffirm$yi), sei = array(nonaffirm$sei),
                     k = k_nonaffirm, tcrit = array(rep(tcrit, k_nonaffirm)))
 
@@ -107,7 +108,7 @@ phacking_meta <- function(yi, # data
   optim_converged <- mle_fit@details$convergence == 0
   vals$optim_converged <- optim_converged
 
-  stan_summary <- rstan::summary(stan_fit)$summary %>%
+  stan_summary <- rstan::summary(stan_fit)$summary |>
     as_tibble(rownames = "param")
 
   stan_ci <- function(param, q) as.numeric(quantile(stan_extract[[param]], q))
@@ -115,15 +116,14 @@ phacking_meta <- function(yi, # data
   cil <- c(stan_ci("mu", alpha / 2), stan_ci("tau", alpha / 2))
   ciu <- c(stan_ci("mu", 1 - alpha / 2), stan_ci("tau", 1 - alpha / 2))
 
-  stan_stats <- stan_summary %>%
-    filter(.data$param %in% c("mu", "tau")) %>%
+  stan_stats <- stan_summary |>
+    filter(.data$param %in% c("mu", "tau")) |>
     select(.data$param, .data$mean, se = .data$se_mean,
-           .data$n_eff, r_hat = .data$Rhat) %>%
-    mutate(mode = modes, median = medians, .after = .data$param) %>%
+           .data$n_eff, r_hat = .data$Rhat) |>
+    mutate(mode = modes, median = medians, .after = .data$param) |>
     mutate(ci_lower = cil, ci_upper = ciu, .after = .data$se)
 
-  results <- list(data = dat, values = vals, stats = stan_stats, fit = stan_fit)
-  class(results) <- "metabias"
-  return(results)
+  metabias::metabias(data = dat, values = vals,
+                     stats = stan_stats, fits = stan_fit)
 
 }

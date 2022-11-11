@@ -15,7 +15,7 @@ test_that("study counts are right even with a strange alpha_select", {
   mpm <- money_priming_sub()
   alpha <- 1e-10
   z_alpha <- qnorm(1 - alpha / 2)
-  mpm <- mpm %>% mutate(affirm = yi / sqrt(vi) > z_alpha)
+  mpm <- mpm |> mutate(affirm = yi / sqrt(vi) > z_alpha)
   res <- phacking_meta(mpm$yi, mpm$vi, alpha_select = alpha,
                        parallelize = FALSE)
 

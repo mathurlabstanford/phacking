@@ -4,6 +4,8 @@
 #' primes on a variety of psychological and behavioral outcomes, in which some
 #' studies were preregistered \insertCite{lodder2019}{phacking}.
 #'
+#' @docType data
+#'
 #' @format A data frame with 287 rows and 4 variables:
 #' \describe{
 #'   \item{study}{Code identifying the study}

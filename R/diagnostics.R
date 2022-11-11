@@ -1,6 +1,6 @@
 #' Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 #'
-#' @param rtma Output of `phacking_meta()`.
+#' @param rtma Output of [phacking_meta()].
 #'
 #' @return A tibble with the columns `yi` (effect sizes), `cdfi`
 #'   (their fitted CDF) and `ecdfi` (their empirical CDF).
@@ -12,21 +12,22 @@
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
+#' money_priming_rtma <- phacking_meta(money_priming_meta$yi,
+#'                                     money_priming_meta$vi,
 #'                                     parallelize = FALSE)
 #' rtma_cdf(money_priming_rtma)
 #' }
 rtma_cdf <- function(rtma) {
-  mu <- rtma$stats %>% filter(.data$param == "mu") %>% pull(.data$median)
-  tau <- rtma$stats %>% filter(.data$param == "tau") %>% pull(.data$median)
+  mu <- rtma$stats |> filter(.data$param == "mu") |> pull(.data$median)
+  tau <- rtma$stats |> filter(.data$param == "tau") |> pull(.data$median)
   tcrit <- rtma$values$tcrit
   ptrunc <- truncnorm::ptruncnorm
 
-  rtma$data %>%
-    filter(!.data$affirm) %>%
+  rtma$data |>
+    filter(!.data$affirm) |>
     mutate(ecdfi = ecdf(.data$yi)(.data$yi),
            cdfi = ptrunc(q = .data$yi, a = -Inf, b = tcrit * .data$sei,
-                         mean = mu, sd = sqrt(tau ^ 2 + .data$sei ^ 2))) %>%
+                         mean = mu, sd = sqrt(tau ^ 2 + .data$sei ^ 2))) |>
     select(.data$yi, .data$cdfi, .data$ecdfi)
 }
 
@@ -39,14 +40,14 @@ rtma_cdf <- function(rtma) {
 #' line, the right-truncated meta-analysis may not fit adequately.
 #'
 #' @inheritParams rtma_cdf
-#' @return No return value, draws a plot.
 #'
 #' @export
 #'
 #' @examples
 #' \donttest{
 #' set.seed(22)
-#' money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
+#' money_priming_rtma <- phacking_meta(money_priming_meta$yi,
+#'                                     money_priming_meta$vi,
 #'                                     parallelize = FALSE)
 #' rtma_qqplot(money_priming_rtma)
 #' }
@@ -76,7 +77,6 @@ rtma_qqplot <- function(rtma) {
 #'
 #' @inheritParams phacking_meta
 #' @param crit_color Color for line and text are critical z-score.
-#' @return No return value, draws a plot.
 #'
 #' @export
 #'
@@ -84,7 +84,7 @@ rtma_qqplot <- function(rtma) {
 #' z_density(money_priming_meta$yi, money_priming_meta$vi)
 z_density <- function(yi, vi, sei, alpha_select = 0.05, crit_color = "red") {
 
-  if (missing(vi) & missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
+  if (missing(vi) && missing(sei)) stop("Must specify 'vi' or 'sei' argument.")
   if (missing(vi)) vi <- sei ^ 2
   if (missing(sei)) sei <- sqrt(vi)
 

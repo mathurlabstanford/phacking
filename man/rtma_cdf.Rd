@@ -7,7 +7,7 @@
 rtma_cdf(rtma)
 }
 \arguments{
-\item{rtma}{Output of \code{phacking_meta()}.}
+\item{rtma}{Output of \code{\link[=phacking_meta]{phacking_meta()}}.}
 }
 \value{
 A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
@@ -19,7 +19,8 @@ Compute theoretical and empirical CDFs for a right-truncated meta-analysis
 \examples{
 \donttest{
 set.seed(22)
-money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
+money_priming_rtma <- phacking_meta(money_priming_meta$yi,
+                                    money_priming_meta$vi,
                                     parallelize = FALSE)
 rtma_cdf(money_priming_rtma)
 }

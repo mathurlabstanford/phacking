@@ -13,7 +13,7 @@ z_density(yi, vi, sei, alpha_select = 0.05, crit_color = "red")
 the point estimates.}
 
 \item{sei}{A vector of estimated standard errors for the point estimates.
-(Only one of `vi` or `sei` needs to be specified).}
+(Only one of \code{vi} or \code{sei} needs to be specified).}
 
 \item{alpha_select}{Alpha level at which an estimate's probability of being
 favored by publication bias is assumed to change (i.e.,
@@ -21,9 +21,6 @@ the threshold at which study investigators, journal editors, etc., consider
 an estimate to be significant).}
 
 \item{crit_color}{Color for line and text are critical z-score.}
-}
-\value{
-No return value, draws a plot.
 }
 \description{
 Plots the Z-scores of all published point estimates. When p-hacking favors
