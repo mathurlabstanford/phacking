@@ -1,0 +1,4 @@
+url: http://mikabr.io/phacking/
+template:
+  bootstrap: 5
+  bootswatch: flatly

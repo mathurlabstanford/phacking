@@ -38,7 +38,7 @@
 #' @references
 #' \insertRef{mathur2022}{phacking}
 #'
-#' @example inst/examples/test-meta.R
+#' @examples
 #' \donttest{
 #' set.seed(22)
 #' phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
