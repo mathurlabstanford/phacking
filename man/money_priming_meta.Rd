@@ -20,11 +20,11 @@ money_priming_meta
 \description{
 Dataset from a meta-analysis of experimental studies on the effect of money
 primes on a variety of psychological and behavioral outcomes, in which some
-studies were preregistered \insertCite{lodder2019}{phacking}.
+studies were preregistered \insertCite{lodder2019}{metabias}.
 }
 \references{
-\insertRef{lodder2019}{phacking}
+\insertRef{lodder2019}{metabias}
 
-\insertRef{lodder2020}{phacking}
+\insertRef{lodder2020}{metabias}
 }
 \keyword{datasets}

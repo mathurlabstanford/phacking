@@ -1,10 +1,10 @@
 #' @keywords internal
 #' @references
-#' \insertRef{mathur2022}{phacking}
+#' \insertRef{mathur2022phacking}{metabias}
 #'
-#' \insertRef{lodder2019}{phacking}
+#' \insertRef{lodder2019}{metabias}
 #'
-#' \insertRef{stan2022}{phacking}
+#' \insertRef{stan2022}{metabias}
 "_PACKAGE"
 
 ## usethis namespace: start

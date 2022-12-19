@@ -36,7 +36,7 @@
 #' @export
 #'
 #' @references
-#' \insertRef{mathur2022}{phacking}
+#' \insertRef{mathur2022phacking}{metabias}
 #'
 #' @examples
 #' \donttest{

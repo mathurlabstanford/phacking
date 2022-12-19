@@ -80,5 +80,5 @@ phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
 }
 }
 \references{
-\insertRef{mathur2022}{phacking}
+\insertRef{mathur2022phacking}{metabias}
 }

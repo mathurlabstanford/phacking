@@ -26,5 +26,5 @@ rtma_cdf(money_priming_rtma)
 }
 }
 \references{
-\insertRef{mathur2022}{phacking}
+\insertRef{mathur2022phacking}{metabias}
 }
