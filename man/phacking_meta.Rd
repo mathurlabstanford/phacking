@@ -37,30 +37,22 @@ an estimate to be significant).}
 point estimate. (The alpha level for inference on the corrected point
 estimate will be calculated from \code{ci_level}.)}
 
-\item{stan_control}{List passed to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}} as the
-\code{control} argument.}
+\item{stan_control}{List passed to \code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}} as the \code{control}
+argument.}
 
 \item{parallelize}{Logical indicating whether to parallelize sampling.}
 }
 \value{
 An object of class \code{\link[metabias:metabias-class]{metabias::metabias()}}, a list containing:
 \describe{
-\item{data}{A tibble with one row per study and the columns \code{yi},
-\code{vi}, \code{sei}, and \code{affirm} (logical indicating
-whether the study result is affirmative).}
-\item{values}{A vector with the elements \code{k} (number of studies),
-\code{k_affirmative} (number of affirmative studies),
-\code{k_nonaffirmative} (number of nonaffirmative studies),
-\code{favor_positive} (as passed to \code{phacking_meta()}),
-\code{alpha_select} (as passed to \code{phacking_meta()}),
-\code{tcrit} (critical t-value based on \code{alpha_select}),
-and \code{optim_converged} (logical indicating whether the
-optimization to find the posterior mode converged).}
-\item{stats}{A tibble with two rows and the columns \code{param} (mu, tau),
-\code{mode}, \code{median}, \code{mean}, \code{se},
-\code{ci_lower}, \code{ci_upper}, \code{n_eff}, and
-\code{r_hat}. We recommend reporting the \code{mode} for the
-point estimate; \code{median} and \code{mean} represent
+\item{data}{A tibble with one row per study and the columns
+\code{yi}, \code{vi}, \code{sei}, \code{affirm}.}
+\item{values}{A list with the elements \code{favor_positive}, \code{alpha_select}, \code{ci_level}, \code{k}, \code{k_affirmative}, \code{k_nonaffirmative}, \code{optim_converged}.
+\code{optim_converged} indicates whether the optimization to find
+the posterior mode converged.}
+\item{stats}{A tibble with two rows and the columns
+\code{param}, \code{mode}, \code{median}, \code{mean}, \code{se}, \code{ci_lower}, \code{ci_upper}, \code{n_eff}, \code{r_hat}. We recommend reporting the \code{mode}
+for the point estimate; \code{median} and \code{mean} represent
 posterior medians and means respectively.}
 \item{fit}{A \code{stanfit} object (the result of fitting the RTMA model).}
 }

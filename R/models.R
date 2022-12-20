@@ -7,28 +7,20 @@
 #' meta-analyses.
 #'
 #' @inheritParams metabias::params
-#' @param stan_control List passed to [rstan::sampling()] as the
-#'   `control` argument.
+#' @param stan_control List passed to [rstan::sampling()] as the `control`
+#'   argument.
 #' @param parallelize Logical indicating whether to parallelize sampling.
 #'
 #' @return An object of class [metabias::metabias()], a list containing:
 #' \describe{
-#'   \item{data}{A tibble with one row per study and the columns `yi`,
-#'               `vi`, `sei`, and `affirm` (logical indicating
-#'               whether the study result is affirmative).}
-#'   \item{values}{A vector with the elements `k` (number of studies),
-#'                 `k_affirmative` (number of affirmative studies),
-#'                 `k_nonaffirmative` (number of nonaffirmative studies),
-#'                 `favor_positive` (as passed to `phacking_meta()`),
-#'                 `alpha_select` (as passed to `phacking_meta()`),
-#'                 `tcrit` (critical t-value based on `alpha_select`),
-#'                 and `optim_converged` (logical indicating whether the
-#'                 optimization to find the posterior mode converged).}
-#'   \item{stats}{A tibble with two rows and the columns `param` (mu, tau),
-#'                `mode`, `median`, `mean`, `se`,
-#'                `ci_lower`, `ci_upper`, `n_eff`, and
-#'                `r_hat`. We recommend reporting the `mode` for the
-#'                point estimate; `median` and `mean` represent
+#'   \item{data}{A tibble with one row per study and the columns
+#'               `r meta_names_str("data")`.}
+#'   \item{values}{A list with the elements `r meta_names_str("values")`.
+#'                 `optim_converged` indicates whether the optimization to find
+#'                 the posterior mode converged.}
+#'   \item{stats}{A tibble with two rows and the columns
+#'                `r meta_names_str("stats")`. We recommend reporting the `mode`
+#'                for the point estimate; `median` and `mean` represent
 #'                posterior medians and means respectively.}
 #'   \item{fit}{A `stanfit` object (the result of fitting the RTMA model).}
 #' }
@@ -64,7 +56,7 @@ phacking_meta <- function(yi, # data
   if (any(sei < 0)) stop("vi or sei should never be negative.")
 
   # warn if naive estimate is in opposite direction than favor_positive
-  naive_pos <- metafor::rma(yi, vi, method = "FE")$beta > 0
+  naive_pos <- as.logical(metafor::rma(yi, vi, method = "FE")$beta > 0)
   if (naive_pos != favor_positive)
     warning("Favored direction is opposite of the pooled estimate.")
 
@@ -84,12 +76,12 @@ phacking_meta <- function(yi, # data
   stan_data <- list(y = array(nonaffirm$yi), sei = array(nonaffirm$sei),
                     k = k_nonaffirm, tcrit = array(rep(tcrit, k_nonaffirm)))
 
-  vals <- list(k = k,
-               k_affirmative = k - k_nonaffirm,
-               k_nonaffirmative = k_nonaffirm,
-               favor_positive = favor_positive,
+  vals <- list(favor_positive = favor_positive,
                alpha_select = alpha_select,
-               tcrit = tcrit)
+               ci_level = ci_level,
+               k = k,
+               k_affirmative = k - k_nonaffirm,
+               k_nonaffirmative = k_nonaffirm)
 
   if (parallelize) options(mc.cores = parallel::detectCores())
   stan_fit <- rstan::sampling(stanmodels$phacking_rtma,
