@@ -50,6 +50,8 @@ Imports:
     Rdpack,
     rstan (>= 2.18.1),
     rstantools (>= 2.2.0)
+Remotes:
+    mikabr/metabias
 LinkingTo:
     BH (>= 1.66.0),
     Rcpp (>= 0.12.0),
