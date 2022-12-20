@@ -559,9 +559,11 @@
       "RemoteUsername": "mikabr",
       "RemoteRepo": "metabias",
       "RemoteRef": "main",
-      "RemoteSha": "e2e978e4f73bb07f0017c59da5fc270bc0753285",
-      "Hash": "b9588732eabf1492b0dc3925e2b327bc",
-      "Requirements": []
+      "RemoteSha": "b5b127a32983a381092c6c9bc8d13b11b9c3e2c0",
+      "Hash": "18f5931bd2a9417abe359ab4ddfef86c",
+      "Requirements": [
+        "Rdpack"
+      ]
     },
     "metadat": {
       "Package": "metadat",
@@ -798,10 +800,10 @@
     },
     "rbibutils": {
       "Package": "rbibutils",
-      "Version": "2.2.8",
+      "Version": "2.2.11",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "60eae09898124cffcab51e5ee082a89f",
+      "Hash": "d7dce4b739dfd1a3824be3d3979783c1",
       "Requirements": []
     },
     "rematch2": {
@@ -824,10 +826,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "1.0.4",
+      "Version": "1.0.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6539dd8c651e67e3b55b5ffea106362b",
+      "Hash": "4ed1f8336c8d52c3e750adcdc57228a7",
       "Requirements": []
     },
     "rmarkdown": {
