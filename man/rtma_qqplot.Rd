@@ -18,7 +18,6 @@ line, the right-truncated meta-analysis may not fit adequately.
 }
 \examples{
 \donttest{
-set.seed(22)
 money_priming_rtma <- phacking_meta(money_priming_meta$yi,
                                     money_priming_meta$vi,
                                     parallelize = FALSE)

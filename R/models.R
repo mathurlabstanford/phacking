@@ -32,9 +32,8 @@
 #'
 #' @examples
 #' \donttest{
-#' set.seed(22)
-#' phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
-#'               parallelize = FALSE)
+#' money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
+#'                                     parallelize = FALSE)
 #' }
 phacking_meta <- function(yi, # data
                           vi,
