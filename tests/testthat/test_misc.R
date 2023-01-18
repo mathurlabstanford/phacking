@@ -22,7 +22,6 @@ test_that("study counts are right even with a strange alpha_select", {
   expect_equal(nrow(mpm), res$values$k)
   expect_equal(sum(mpm$affirm), res$values$k_affirmative)
   expect_equal(sum(mpm$affirm == 0), res$values$k_nonaffirmative)
-  # expect_equal(z_alpha, res$values$tcrit)
 })
 
 test_that("one nonaffirmative runs", {
