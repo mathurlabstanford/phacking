@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/mikabr/phacking/workflows/R-CMD-check/badge.svg)](https://github.com/mikabr/phacking/actions)
+[![R-CMD-check](https://github.com/mikabr/phacking/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mikabr/phacking/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
   
 `phacking` is an R package that provides a bias correction for the joint effects of p-hacking (i.e., manipulation of results within studies to obtain significant, positive estimates) and traditional publication bias (i.e., the selective publication of studies with significant, positive results) in meta-analyses (per [Mathur, 2022](https://osf.io/ezjsx/)).
