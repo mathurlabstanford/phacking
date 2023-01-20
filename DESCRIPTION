@@ -1,6 +1,6 @@
 Package: phacking
 Title: Sensitivity Analysis for p-Hacking in Meta-Analyses
-Version: 0.0.2
+Version: 0.1.0
 Authors@R: c(
   person("Mika", "Braginsky", email = "mika.br@gmail.com", role = c("aut", "cre")),
   person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut")))
