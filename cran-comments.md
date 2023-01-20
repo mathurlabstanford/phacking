@@ -1,8 +1,7 @@
 ## Test environments
-- local OSX install (R 4.1.3)
-- Windows Server 2022, R-devel, 64 bit (on R-hub)
-- Ubuntu Linux 20.04.1 LTS, R-release, GCC (on R-hub)
-- Fedora Linux, R-devel, clang, gfortran (on R-hub)
+- macos-latest release (on macbuilder)
+- windows-latest release (on winbuilder)
+- windows-latest devel (on winbuilder)
 
 
 ## R CMD check results
