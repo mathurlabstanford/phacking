@@ -2,7 +2,7 @@
 meta_names <- function(component) {
   names_list <- list(
     data = c("yi", "vi", "sei", "affirm"),
-    values = c("favor_positive", "alpha_select", "ci_level", "k",
+    values = c("favor_positive", "alpha_select", "ci_level", "tcrit", "k",
                "k_affirmative", "k_nonaffirmative", "optim_converged"),
     stats = c("param", "mode", "median", "mean", "se", "ci_lower",
               "ci_upper", "n_eff", "r_hat"))

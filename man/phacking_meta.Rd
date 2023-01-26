@@ -47,7 +47,7 @@ An object of class \code{\link[metabias:metabias-class]{metabias::metabias()}}, 
 \describe{
 \item{data}{A tibble with one row per study and the columns
 \code{yi}, \code{vi}, \code{sei}, \code{affirm}.}
-\item{values}{A list with the elements \code{favor_positive}, \code{alpha_select}, \code{ci_level}, \code{k}, \code{k_affirmative}, \code{k_nonaffirmative}, \code{optim_converged}.
+\item{values}{A list with the elements \code{favor_positive}, \code{alpha_select}, \code{ci_level}, \code{tcrit}, \code{k}, \code{k_affirmative}, \code{k_nonaffirmative}, \code{optim_converged}.
 \code{optim_converged} indicates whether the optimization to find
 the posterior mode converged.}
 \item{stats}{A tibble with two rows and the columns

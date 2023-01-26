@@ -78,6 +78,7 @@ phacking_meta <- function(yi, # data
   vals <- list(favor_positive = favor_positive,
                alpha_select = alpha_select,
                ci_level = ci_level,
+               tcrit = tcrit,
                k = k,
                k_affirmative = k - k_nonaffirm,
                k_nonaffirmative = k_nonaffirm)
