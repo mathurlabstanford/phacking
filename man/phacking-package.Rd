@@ -18,8 +18,9 @@ Fits right-truncated meta-analysis (RTMA), a bias correction for the joint effec
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/mikabr/phacking}
-  \item Report bugs at \url{https://github.com/mikabr/phacking/issues}
+  \item \url{https://github.com/mathurlabstanford/phacking}
+  \item \url{https://mathurlabstanford.github.io/phacking}
+  \item Report bugs at \url{https://github.com/mathurlabstanford/phacking/issues}
 }
 
 }
