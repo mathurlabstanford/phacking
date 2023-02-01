@@ -24,8 +24,9 @@ Description: Fits right-truncated meta-analysis (RTMA), a bias correction for
   of all results prior to selection due to p-hacking and/or publication bias.
   The package also provides diagnostic plots described in Mathur (2022).
 License: MIT + file LICENSE
-URL: https://github.com/mikabr/phacking
-BugReports: https://github.com/mikabr/phacking/issues
+URL: https://github.com/mathurlabstanford/phacking,
+     https://mathurlabstanford.github.io/phacking
+BugReports: https://github.com/mathurlabstanford/phacking/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
