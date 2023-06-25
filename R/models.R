@@ -35,6 +35,7 @@
 #'
 #' @examples
 #' \donttest{
+#' # passing all studies, though only nonaffirmative ones will be analyzed
 #' money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
 #'                                     parallelize = FALSE)
 #' }
