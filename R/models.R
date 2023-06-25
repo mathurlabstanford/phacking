@@ -4,7 +4,10 @@
 #' effects of p-hacking (i.e., manipulation of results within studies to obtain
 #' significant, positive estimates) and traditional publication bias (i.e., the
 #' selective publication of studies with significant, positive results) in
-#' meta-analyses.
+#' meta-analyses. This method analyzes only nonaffirmative studies (i.e., those
+#' with significant, positive estimates). You can pass all studies in the meta-analysis
+#' or only the nonaffirmative ones; if the former, the function will still analyze only
+#' the nonaffirmative ones.
 #'
 #' @inheritParams metabias::params
 #' @param stan_control List passed to [rstan::sampling()] as the `control`
