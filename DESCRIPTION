@@ -2,8 +2,9 @@ Package: phacking
 Title: Sensitivity Analysis for p-Hacking in Meta-Analyses
 Version: 0.1.0.9000
 Authors@R: c(
-  person("Mika", "Braginsky", email = "mika.br@gmail.com", role = c("aut", "cre")),
-  person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut")))
+  person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut", "cre")),
+  person("Mika", "Braginsky", email = "mika.br@gmail.com", role = c("aut"))
+  )
 Description: Fits right-truncated meta-analysis (RTMA), a bias correction for
   the joint effects of p-hacking (i.e., manipulation of results within studies
   to obtain significant, positive estimates) and traditional publication bias
