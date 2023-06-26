@@ -1,6 +1,6 @@
 Package: phacking
 Title: Sensitivity Analysis for p-Hacking in Meta-Analyses
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: c(
   person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut", "cre")),
   person("Mika", "Braginsky", email = "mika.br@gmail.com", role = c("aut"))
@@ -26,7 +26,7 @@ Description: Fits right-truncated meta-analysis (RTMA), a bias correction for
   The package also provides diagnostic plots described in Mathur (2022).
 License: MIT + file LICENSE
 URL: https://github.com/mathurlabstanford/phacking,
-     https://mathurlabstanford.github.io/phacking
+     https://mathurlabstanford.github.io/phacking/
 BugReports: https://github.com/mathurlabstanford/phacking/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
