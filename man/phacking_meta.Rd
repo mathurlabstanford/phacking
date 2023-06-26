@@ -62,10 +62,14 @@ Fits right-truncated meta-analysis (RTMA), a bias correction for the joint
 effects of p-hacking (i.e., manipulation of results within studies to obtain
 significant, positive estimates) and traditional publication bias (i.e., the
 selective publication of studies with significant, positive results) in
-meta-analyses.
+meta-analyses. This method analyzes only nonaffirmative studies (i.e., those
+with significant, positive estimates). You can pass all studies in the meta-analysis
+or only the nonaffirmative ones; if the former, the function will still analyze only
+the nonaffirmative ones.
 }
 \examples{
 \donttest{
+# passing all studies, though only nonaffirmative ones will be analyzed
 money_priming_rtma <- phacking_meta(money_priming_meta$yi, money_priming_meta$vi,
                                     parallelize = FALSE)
 }

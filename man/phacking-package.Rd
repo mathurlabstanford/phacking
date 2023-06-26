@@ -19,17 +19,17 @@ Fits right-truncated meta-analysis (RTMA), a bias correction for the joint effec
 Useful links:
 \itemize{
   \item \url{https://github.com/mathurlabstanford/phacking}
-  \item \url{https://mathurlabstanford.github.io/phacking}
+  \item \url{https://mathurlabstanford.github.io/phacking/}
   \item Report bugs at \url{https://github.com/mathurlabstanford/phacking/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Mika Braginsky \email{mika.br@gmail.com}
+\strong{Maintainer}: Maya Mathur \email{mmathur@stanford.edu}
 
 Authors:
 \itemize{
-  \item Maya Mathur \email{mmathur@stanford.edu}
+  \item Mika Braginsky \email{mika.br@gmail.com}
 }
 
 }
