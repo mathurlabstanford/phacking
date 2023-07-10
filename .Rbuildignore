@@ -11,3 +11,4 @@ cran-comments.md
 ^pkgdown$
 ^RELEASE\.R$
 ^check\.sh$
+^_tmp$
