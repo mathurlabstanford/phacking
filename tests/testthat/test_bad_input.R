@@ -1,4 +1,5 @@
 test_that("catch bad inputs", {
+  cat("\n\n", as.character(Sys.time()), "--------------- test_bad_input.R ---------------\n\n")
   mpm <- money_priming_sub()
 
   # passing only affirmatives should result in an informative error
