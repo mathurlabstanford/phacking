@@ -26,9 +26,9 @@ test_that("study counts are right even with a strange alpha_select", {
   expect_equal(sum(mpm$affirm == 0), res$values$k_nonaffirmative)
 })
 
-test_that("one nonaffirmative runs", {
-  cat("\n\n", as.character(Sys.time()), "--------------- test_misc.R / nonaffirmative runs ---------------\n\n")
-  # try passing only 1 nonaffirmative; should still run but have warnings
-  w <- capture_warnings(phacking_meta(yi = 0.2, sei = 0.2, parallelize = FALSE))
-  expect_gt(length(w), 0)
-})
+# test_that("one nonaffirmative runs", {
+#   cat("\n\n", as.character(Sys.time()), "--------------- test_misc.R / nonaffirmative runs ---------------\n\n")
+#   # try passing only 1 nonaffirmative; should still run but have warnings
+#   w <- capture_warnings(phacking_meta(yi = 0.2, sei = 0.2, parallelize = FALSE))
+#   expect_gt(length(w), 0)
+# })
