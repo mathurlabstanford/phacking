@@ -2,8 +2,8 @@ Package: phacking
 Title: Sensitivity Analysis for p-Hacking in Meta-Analyses
 Version: 0.1.1
 Authors@R: c(
-  person("Peter", "Solymos", email = "psolymos@gmail.com", role = c("ctb"), comment = c(ORCID = "0000-0001-7337-1740")),
-  person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut", "cre")),
+  person("Peter", "Solymos", email = "psolymos@gmail.com", role = c("cre", "ctb"), comment = c(ORCID = "0000-0001-7337-1740")),
+  person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut")),
   person("Mika", "Braginsky", email = "mika.br@gmail.com", role = c("aut"))
   )
 Description: Fits right-truncated meta-analysis (RTMA), a bias correction for
