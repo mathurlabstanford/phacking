@@ -22,16 +22,16 @@ FILE=$TMP/$PKG-check-logs.log
 echo $(date) - Script started > $FILE
 
 echo $(date) - Installing package dependencies >> $FILE
+apt update -qq && apt install --yes --no-install-recommends pandoc devscripts
+R -q -e "install.packages('codetools')"
 R -q -e "remotes::install_deps('$PKG', upgrade='never', dependencies=TRUE)"
 
 echo $(date) - Building package >> $FILE
 R CMD build $PKG
+cp $PKG_*.tar.gz $TMP
 
 echo $(date) - Running checks >> $FILE
-# R_CHECK_DONTTEST_EXAMPLES=false R CMD check --no-manual --no-tests $PKG_*.tar.gz
-R_CHECK_DONTTEST_EXAMPLES=false R CMD check --no-manual --as-cran $PKG_*.tar.gz
+# R_CHECK_DONTTEST_EXAMPLES=false R CMD check --no-manual --as-cran --no-tests --output=$TMP $PKG_*.tar.gz
+R_CHECK_DONTTEST_EXAMPLES=false R CMD check --no-manual --as-cran --output=$TMP $PKG_*.tar.gz
 
-echo $(date) - Moving artifacts >> $FILE
-cp $PKG_*.tar.gz $TMP
-cp -r $PKG.Rcheck $TMP
 echo $(date) - Done >> $FILE
