@@ -1,4 +1,7 @@
-# phacking (development version)
+# phacking 0.2.0
+
+* Tests revised to cut down package check times.
+* Package gains new maintainer: Peter Solymos.
 
 # phacking 0.1.0
 

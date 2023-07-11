@@ -1,8 +1,13 @@
 ## Test environments
-- macos-latest release (on macbuilder)
-- windows-latest release (on winbuilder)
-- windows-latest devel (on winbuilder)
 
+The package was tested with `R CMD check --as-cran` on the following platforms:
+
+* ubuntu-gcc-devel,
+* ubuntu-gcc-release,
+* windows-x86_64-devel,
+* windows-x86_64-release,
+* windows-x86_64-oldrel,
+* macos-latest.
 
 ## R CMD check results
 
@@ -11,13 +16,6 @@ Most examples are wrapped in `\donttest{}` because they take more than 5s to run
 There were no ERRORs or WARNINGs.
 
 There were 2 NOTEs:
-
-```
-* checking dependencies in R code ... NOTE
-Namespaces in Imports field not imported from:
-  'RcppParallel' 'rstantools'
-  All declared Imports should be used.
-```
 
 These packages are all used.
 
