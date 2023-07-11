@@ -1,4 +1,5 @@
 test_that("correct output structure for phacking_meta", {
+  cat("\n\n", as.character(Sys.time()), "--------------- test_outputs.R ---------------\n\n")
 
   params <- list(favor_positive = FALSE, alpha_select = 0.01, ci_level = 0.90)
 

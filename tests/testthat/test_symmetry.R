@@ -1,4 +1,5 @@
 test_that("symmetry wrt favor_positive", {
+  cat("\n\n", as.character(Sys.time()), "--------------- test_symmetry.R ---------------\n\n")
   mpm <- money_priming_sub()
 
   mpm <- mpm |> mutate(yi_flipped = -yi)
