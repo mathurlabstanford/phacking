@@ -26,7 +26,7 @@ CRAN repository db overrides:
     in time.
 ```
 
-The package has new maintainer and is being submitted after archival.
+The package has new maintainer and is being submitted after archival. See more detailes below.
 
 ```
 * checking installed package size ... NOTE
@@ -82,4 +82,4 @@ Please ensure that you do not use more than 2 cores in your examples,
 vignettes, etc.
 ```
 
-We checked all examples to make sure only 1 core is used.
+We checked all examples to make sure only 1 core is used via `parallelize = FALSE` that makes sure only 1 core is used.
