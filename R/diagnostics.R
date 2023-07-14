@@ -9,6 +9,8 @@
 #' @references
 #' \insertRef{mathur2022phacking}{metabias}
 #'
+#' @return A data frame with the CDF derived from a metabias object.
+#'
 #' @examples
 #' \donttest{
 #' money_priming_rtma <- phacking_meta(money_priming_meta$yi,
@@ -41,6 +43,8 @@ rtma_cdf <- function(rtma) {
 #' @inheritParams rtma_cdf
 #'
 #' @export
+#'
+#' @return A ggplot2 object representing quantile-quantile plot.
 #'
 #' @examples
 #' \donttest{
@@ -77,6 +81,8 @@ rtma_qqplot <- function(rtma) {
 #' @param crit_color Color for line and text are critical z-score.
 #'
 #' @export
+#'
+#' @return A ggplot2 object representing a Z-score density plot.
 #'
 #' @examples
 #' z_density(money_priming_meta$yi, money_priming_meta$vi)
