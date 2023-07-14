@@ -12,7 +12,7 @@
 # mkdir _tmp
 ##
 ## Run the check.sh script
-# docker run -it --rm --platform linux/amd64 -v $PWD:/home/root/phacking -w /home/root $IMAGE /bin/bash phacking/check.sh
+# docker run -it --rm --platform linux/amd64 -v $PWD:/home/root/phacking -w /home/root ${IMAGE:-eddelbuettel/r2u:22.04} /bin/bash phacking/check.sh
 ##
 ## Now check files in the _tmp folder
 
@@ -23,8 +23,19 @@ echo $(date) - Script started > $FILE
 
 echo $(date) - Installing package dependencies >> $FILE
 apt update -qq && apt install --yes --no-install-recommends pandoc devscripts
-R -q -e "install.packages('codetools')"
+R -q -e "install.packages(c('codetools','roxygen2'))"
 R -q -e "remotes::install_deps('$PKG', upgrade='never', dependencies=TRUE)"
+
+echo $(date) - Building package >> $FILE
+R CMD build $PKG
+cp $PKG_*.tar.gz $TMP
+
+echo $(date) - Updating Rd files >> $FILE
+R CMD build $PKG
+R CMD INSTALL $PKG_*.tar.gz
+R -q -e "roxygen2::roxygenize('$PKG', load_code='installed')"
+cp $PKG/man man
+rm $PKG_*.tar.gz
 
 echo $(date) - Building package >> $FILE
 R CMD build $PKG
