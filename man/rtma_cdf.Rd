@@ -12,6 +12,8 @@ rtma_cdf(rtma)
 \value{
 A tibble with the columns \code{yi} (effect sizes), \code{cdfi}
 (their fitted CDF) and \code{ecdfi} (their empirical CDF).
+
+A data frame with the CDF derived from a metabias object.
 }
 \description{
 Compute theoretical and empirical CDFs for a right-truncated meta-analysis

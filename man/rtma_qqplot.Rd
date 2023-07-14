@@ -9,6 +9,9 @@ rtma_qqplot(rtma)
 \arguments{
 \item{rtma}{Output of \code{\link[=phacking_meta]{phacking_meta()}}.}
 }
+\value{
+A ggplot2 object representing quantile-quantile plot.
+}
 \description{
 To assess the fit of right-truncated meta-analysis and possible violations of
 its distributional assumptions, plots the fitted cumulative distribution

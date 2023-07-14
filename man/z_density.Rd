@@ -22,6 +22,9 @@ an estimate to be significant).}
 
 \item{crit_color}{Color for line and text are critical z-score.}
 }
+\value{
+A ggplot2 object representing a Z-score density plot.
+}
 \description{
 Plots the Z-scores of all published point estimates. When p-hacking favors
 affirmative estimates over nonaffirmative estimates, as our methods and
