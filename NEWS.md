@@ -1,3 +1,7 @@
+# phacking 0.2.1
+
+* Explained the return values for each function in the documentation.
+
 # phacking 0.2.0
 
 * Tests revised to cut down package check times.
