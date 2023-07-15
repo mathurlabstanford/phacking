@@ -25,7 +25,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Peter Solymos \email{psolymos@gmail.com} (\href{https://orcid.org/0000-0001-7337-1740}{ORCID}) [contributor]
+\strong{Maintainer}: Peter Solymos \email{peter@analythium.io} (\href{https://orcid.org/0000-0001-7337-1740}{ORCID}) [contributor]
 
 Authors:
 \itemize{
