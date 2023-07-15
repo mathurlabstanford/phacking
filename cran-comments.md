@@ -15,7 +15,7 @@ There were no ERRORs or WARNINGs.
 There were 3 NOTEs:
 
 ```
-Maintainer: ‘Peter Solymos <psolymos@gmail.com>’
+Maintainer: ‘Peter Solymos <peter@analythium.io>’
 
 New submission
 

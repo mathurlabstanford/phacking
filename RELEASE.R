@@ -1,5 +1,5 @@
 library(rhub)
-#validate_email("psolymos@gmail.com")
+#validate_email("peter@analythium.io")
 platforms()
 f <- c("ubuntu-gcc-devel",
        "ubuntu-gcc-release",

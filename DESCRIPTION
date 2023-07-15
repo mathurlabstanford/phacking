@@ -2,7 +2,7 @@ Package: phacking
 Title: Sensitivity Analysis for p-Hacking in Meta-Analyses
 Version: 0.2.1
 Authors@R: c(
-  person("Peter", "Solymos", email = "psolymos@gmail.com", role = c("cre", "ctb"), comment = c(ORCID = "0000-0001-7337-1740")),
+  person("Peter", "Solymos", email = "peter@analythium.io", role = c("cre", "ctb"), comment = c(ORCID = "0000-0001-7337-1740")),
   person("Maya", "Mathur", email = "mmathur@stanford.edu", role = c("aut")),
   person("Mika", "Braginsky", email = "mika.br@gmail.com", role = c("aut"))
   )
