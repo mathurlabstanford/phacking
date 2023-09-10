@@ -1,6 +1,6 @@
 functions{
 
-	real jeffreys_prior(real mu, real tau, int k, real[] sei, real[] tcrit){
+	real jeffreys_prior(real mu, real tau, int k, array[] real sei, array[] real tcrit){
 
     // variables that will be recalculated for each observation
 		real kmm;
@@ -50,9 +50,9 @@ functions{
 
 data{
 	int<lower=0> k;
-  real sei[k];
-  real tcrit[k];
-	real y[k];
+  array[k] real sei;
+  array[k] real tcrit;
+	array[k] real y;
 }
 
 parameters{
